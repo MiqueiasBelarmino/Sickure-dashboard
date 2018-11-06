@@ -95,9 +95,9 @@ class controleFuncionario extends controleGeral {
             {
                 View::includeHeader("Funcionário");
                 ?>
-               <div class="box no-print bg-navy">
+               <div class="box">
                     <div class="box-body">
-                    <a href="?pag=funcionario&acao=novo" class="btn btn-success btn-flat pull-left">Adicionar Funcionário</a>
+                    <a href="?pag=funcionario&acao=novo" class="btn btn-info btn-flat pull-left">Adicionar Funcionário</a>
                     <form action='?pag=funcionario&acao=listar' method='post' class="pull-right">
                         <input type="hidden" name='busca' <?php if(isset($_POST['busca'])) print("value='".$_POST['busca']."'"); ?>>
                         <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo 
@@ -142,8 +142,8 @@ class controleFuncionario extends controleGeral {
                                         <td>
                                             
                                         <a href="?pag=funcionario&acao=editar&id=<?php print($func['funcionario_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=funcionario&acao=desativar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
                                         <a href="?pag=funcionario&acao=visualizar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></a>
+                                        <a href="?pag=funcionario&acao=desativar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
                                             
                                         </td>
                                     </tr>

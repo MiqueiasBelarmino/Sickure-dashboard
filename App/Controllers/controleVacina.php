@@ -116,19 +116,24 @@ class controleVacina extends controleGeral
             {
                 View::includeHeader();
                 ?>
-                <div class="box box-primary">
-                <?php
+                <div class="box box-default">
+                    <div class="box-body">
+                    <a href="?pag=vacina&acao=novo" class="btn btn-flat btn-info pull-left">Adicionar Vacina</a>
+                    <form action='?pag=vacina&acao=listar' method='post' class="pull-right">
+                        <input type="hidden" name='busca' <?php if(isset($_POST['busca'])) print("value='".$_POST['busca']."'"); ?>>
+                        <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo 
+                        <input type='radio' name='ativo' value='0' <?php if(isset($_POST['ativo']) && $_POST['ativo']==0 ) print("checked"); ?> style="margin-left: 10px"> Inativo
+                        <input type="submit" name='buscar' value='Filtrar' class="btn btn-flat btn-default" style="margin-left:10px">
+                    </form>
+                    </div>
+                </div>
 
-                    ?>
+                <div class="box box-default">
+
                 <div class="box-header">
                     <h3 class="box-title">Lista de Vacinas</h3>
                     <br>
-                    <a href="?pag=vacina&acao=novo" class="btn btn-info pull-left">Adicionar Vacina</a>
-                    <form action='?pag=vacina&acao=listar' method='post' class="pull-right">
-                        <input type="hidden" name='busca' <?php if(isset($_POST['busca'])) print("value='".$_POST['busca']."'"); ?>>
-                        <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo <input type='radio' name='ativo' value='0' <?php if(isset($_POST['ativo']) && $_POST['ativo']==0 ) print("checked"); ?>> Inativo
-                        <input type="submit" name='buscar' value='Filtrar' class="btn btn-info">
-                    </form>
+                    
                 </div>
                     <!-- /.-header -->
                     <div class="box-body">
@@ -151,9 +156,9 @@ class controleVacina extends controleGeral
                                 <tr>
                                     <td><a href="?pag=vacina&acao=visualizar&id=<?php print($func['vacina_id']) ?>" style="color: green !important;"><?php print($func['vacina_nome']) ?></a></td>
                                     <td>
-                                        <a href="?pag=vacina&acao=editar&id=<?php print($func['vacina_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=vacina&acao=desativar&id=<?php print($func['vacina_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-trash"></i></a>
-                                        <a href="?pag=vacina&acao=visualizar&id=<?php print($func['vacina_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></a>
+                                        <a href="?pag=vacina&acao=editar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <a href="?pag=vacina&acao=visualizar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"></i></a>
+                                        <a href="?pag=vacina&acao=desativar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
                                     </td>
                                 </tr>
                                 <?php
@@ -190,19 +195,21 @@ class controleVacina extends controleGeral
                 $res = $funcDB->select($_GET['id']);
                 View::formVacina($res, false);
                 ?>
-                <div class="box box-primary">
-                <?php
-
-                    ?>
-                <div class="box-header">
-                    <h3 class="box-title">Lotes</h3>
-                    <br>
-                    <a href="?pag=vacina&acao=novolote&vacina_id=<?php print($_GET['id']); ?>" class="btn btn-info pull-left">Adicionar lote</a>
+                <div class="box">
+                    <div class="box-body">
+                    <a href="?pag=vacina&acao=novolote&vacina_id=<?php print($_GET['id']); ?>" class="btn btn-flat btn-info pull-left">Adicionar lote</a>
                     <form action='' method='post' class="pull-right">
                         <input type="hidden" name='busca' <?php if(isset($_POST['busca'])) print("value='".$_POST['busca']."'"); ?>>
-                        <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo <input type='radio' name='ativo' value='0' <?php if(isset($_POST['ativo']) && $_POST['ativo']==0 ) print("checked"); ?>> Inativo
-                        <input type="submit" name='buscar' value='Filtrar' class="btn btn-info">
+                        <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo 
+                        <input type='radio' name='ativo' value='0' <?php if(isset($_POST['ativo']) && $_POST['ativo']==0 ) print("checked"); ?> style="margin-left: 10px"> Inativo
+                        <input type="submit" name='buscar' value='Filtrar' class="btn btn-flat btn-default" style="margin-left:10px">
                     </form>
+                    </div>
+                </div>
+                <div class="box box-default">
+
+                <div class="box-header">
+                    <h3 class="box-title">Lotes</h3>
                 </div>
                     <!-- /.-header -->
                     <div class="box-body">
@@ -242,17 +249,17 @@ class controleVacina extends controleGeral
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="?pag=vacina&acao=editarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=vacina&acao=visualizarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></a>
+                                        <a href="?pag=vacina&acao=editarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <a href="?pag=vacina&acao=visualizarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"></i></a>
                                         
                                         <?php
                                             if($vaclot['vlote_ativo']==1):
                                         ?>
-                                        <a href="?pag=vacina&acao=desativarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
+                                        <a href="?pag=vacina&acao=desativarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
                                         <?php
                                             else:
                                         ?>
-                                            <a href="?pag=vacina&acao=ativarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-success btn-flat"><i class="fa fa-power-off"></i></a>
+                                            <a href="?pag=vacina&acao=ativarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"></i></a>
                                         <?php
                                             endif;
                                         ?>                        
@@ -289,17 +296,6 @@ class controleVacina extends controleGeral
                 $useDB = new LoteVacina();
                 $res = $useDB->selectLote($_GET['id'],$_GET['cod']);
                 View::formLoteVacina($_GET['id'], $res, false);
-                ?>
-                <table>
-                    <tr>
-                        <td><a href="?pag=vacina&acao=editarlote&id=<?php print($_GET['id'].'&cod='.$_GET['cod'])?>">Editar</a></td>
-                        <?php 
-                        if($res['vlote_ativo']==1) print('<td><a href="?pag=vacina&acao=desativarlote&id='.$_GET['id'].'&cod='.$_GET['cod'].'">Desativar</a></td>');
-                        else print('<a href="?pag=vacina&acao=ativarlote&id='.$_GET['id'].'&cod='.$_GET['cod'].'">Reativar</a>');
-                        ?>
-                    </tr>
-                </table>
-                <?php
                 View::includeFooter();
                 print("</table>");
             }

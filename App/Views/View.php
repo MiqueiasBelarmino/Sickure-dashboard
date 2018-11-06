@@ -71,7 +71,7 @@ class View {
         if(isset($dados)) $action = 'alterar'
         ?>
 
-            <div class="box box-primary">
+            <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Adicionar Funcionário</h3>
                 </div>
@@ -157,16 +157,16 @@ class View {
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                    <a href="?pag=funcionario&acao=listar" class='btn btn-default btn-flat pull-left'>Voltar</a>
+                    <a href="?pag=funcionario&acao=listar" class='btn btn-flat btn-default  pull-left'>Voltar</a>
                     <?php
                     
                         if(isset($dados['funcionario_id'])) print("<input type='hidden' name='funcionario_id' value='".$dados['funcionario_id']."'>");
-                        if($editable) print("<input type='submit' name='submit' value='Salvar' class='btn btn-success pull-right btn-flat'>");
+                        if($editable) print("<input type='submit' name='submit' value='Salvar' class='btn btn-flat btn-success pull-right '>");
                         if(!$editable){
                         ?>
                         <div id="editar">
-                            <a href='?pag=funcionario&acao=trocasenha&id=<?php print($_GET['id'])?>' class='btn btn-default pull-right btn-flat' style="margin-left:5px">Alterar Senha</a>
-                            <a href='?pag=funcionario&acao=resetarsenha&id=<?php print($_GET['id'])?>' class='btn btn-default pull-right btn-flat'>Resetar Senha</a>
+                            <a href='?pag=funcionario&acao=trocasenha&id=<?php print($_GET['id'])?>' class='btn btn-flat btn-default pull-right ' style="margin-left:5px">Alterar Senha</a>
+                            <a href='?pag=funcionario&acao=resetarsenha&id=<?php print($_GET['id'])?>' class='btn btn-flat btn-default pull-right '>Resetar Senha</a>
                         </div>
                         <?php
                             }
@@ -292,16 +292,16 @@ class View {
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                    <a href="?pag=paciente&acao=listar" class='btn btn-default btn-flat pull-left'>Voltar</a>
+                    <a href="?pag=paciente&acao=listar" class='btn btn-flat btn-default  pull-left'>Voltar</a>
                     <?php
                     
                         if(isset($dados['paciente_id'])) print("<input type='hidden' name='paciente_id' value='".$dados['paciente_id']."'>");
-                        if($editable) print("<input type='submit' name='submit' value='Salvar' class='btn btn-success pull-right btn-flat'>");
+                        if($editable) print("<input type='submit' name='submit' value='Salvar' class='btn btn-flat btn-success pull-right '>");
                         if(!$editable){
                         ?>
                         <div id="editar">
-                            <a href='?pag=paciente&acao=trocasenha&id=<?php print($_GET['id'])?>' class='btn btn-default pull-right btn-flat' style="margin-left:5px">Alterar Senha</a>
-                            <a href='?pag=paciente&acao=resetarsenha&id=<?php print($_GET['id'])?>' class='btn btn-default pull-right btn-flat'>Resetar Senha</a>
+                            <a href='?pag=paciente&acao=trocasenha&id=<?php print($_GET['id'])?>' class='btn btn-flat btn-default pull-right ' style="margin-left:5px">Alterar Senha</a>
+                            <a href='?pag=paciente&acao=resetarsenha&id=<?php print($_GET['id'])?>' class='btn btn-flat btn-default pull-right '>Resetar Senha</a>
                         </div>
                         <?php
                             }
@@ -324,9 +324,9 @@ class View {
         $action = 'inserir';
         if(isset($dados)) $action = 'alterar'
         ?>
-            <div class="box box-primary">
+            <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Adicionar Medicamento</h3>
+                    <h3 class="box-title">Medicamento</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -340,11 +340,11 @@ class View {
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                    <a href="?pag=medicamento&acao=listar" class='btn btn-primary pull-left'>Voltar</a>
+                    <a href="?pag=medicamento&acao=listar" class='btn btn-flat btn-default pull-left'>Voltar</a>
                     <?php
                     
                         if(isset($dados['medicamento_id'])) print("<input type='hidden' name='medicamento_id' value='".$dados['medicamento_id']."'>");
-                        if($editable) print("<input type='submit' name='submit' value='Confirmar' class='btn btn-success pull-right'>");
+                        if($editable) print("<input type='submit' name='submit' value='Salvar' class='btn btn-flat btn-success pull-right'>");
                         ?>
                     </div>
                 </form>
@@ -363,7 +363,7 @@ class View {
         $action = 'inserirlote';
         if(isset($dados)) $action = 'alterarlote'
         ?>
-            <div class="box box-primary">
+            <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Adicionar Lote</h3>
                 </div>
@@ -391,11 +391,11 @@ class View {
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                    <a onClick="history.go(-1)" class='btn btn-primary pull-left'>Voltar</a>
+                    <a onClick="history.go(-1)" class='btn btn-flat btn-default pull-left'>Voltar</a>
                     <?php
                     
                         if(isset($dados['medicamento_id'])) print("<input type='hidden' name='medicamento_id' value='".$dados['medicamento_id']."'>");
-                        if($editable) print("<input type='submit' name='submit' value='Confirmar' class='btn btn-success pull-right'>");
+                        if($editable) print("<input type='submit' name='submit' value='salvar' class='btn btn-flat btn-success pull-right'>");
                         ?>
                     </div>
                 </form>
@@ -417,9 +417,9 @@ class View {
         $action = 'inserir';
         if(isset($dados)) $action = 'alterar'
         ?>
-            <div class="box box-primary">
+            <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Adicionar Vacina</h3>
+                    <h3 class="box-title">Vacina</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -433,11 +433,11 @@ class View {
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                    <a href="?pag=vacina&acao=listar" class='btn btn-primary pull-left'>Voltar</a>
+                    <a href="?pag=vacina&acao=listar" class='btn btn-flat btn-default pull-left'>Voltar</a>
                     <?php
                     
                         if(isset($dados['vacina_id'])) print("<input type='hidden' name='vacina_id' value='".$dados['vacina_id']."'>");
-                        if($editable) print("<input type='submit' name='submit' value='Confirmar' class='btn btn-success pull-right'>");
+                        if($editable) print("<input type='submit' name='submit' value='Salvar' class='btn btn-flat btn-success pull-right'>");
                         ?>
                     </div>
                 </form>
@@ -456,7 +456,7 @@ class View {
         $action = 'inserirlote';
         if(isset($dados)) $action = 'alterarlote'
         ?>
-            <div class="box box-primary">
+            <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Adicionar Lote</h3>
                 </div>
@@ -484,11 +484,11 @@ class View {
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                    <a onClick="history.go(-1)" class='btn btn-primary pull-left'>Voltar</a>
+                    <a onClick="history.go(-1)" class='btn btn-flat btn-default pull-left'>Voltar</a>
                     <?php
                     
                         if(isset($dados['vacina_id'])) print("<input type='hidden' name='vacina_id' value='".$dados['vacina_id']."'>");
-                        if($editable) print("<input type='submit' name='submit' value='Confirmar' class='btn btn-success pull-right'>");
+                        if($editable) print("<input type='submit' name='submit' value='Salvar' class='btn btn-flat btn-success pull-right'>");
                         ?>
                     </div>
                 </form>
@@ -584,7 +584,7 @@ class View {
             <div class="row">
                 <!-- /.col -->
                 <div class="col-xs-12">
-                <button type="submit" class="btn btn-primary btn-block btn-flat pull-right" name='submit'>Entrar</button>
+                <button type="submit" class="btn btn-flat btn-primary btn-block  pull-right" name='submit'>Entrar</button>
                 </div>
                 <!-- /.col -->
             </div>
@@ -627,9 +627,9 @@ class View {
     public static function consultaAgendarForm($id)
     {
         ?>
-        <div class="box box-primary">
+        <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Adicionar Lote</h3>
+                <h3 class="box-title">Agendar Consulta</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -639,9 +639,9 @@ class View {
                         <label for="consulta_data">Data</label>
                         <input type="date" class="form-control" name="consulta_data" id="consulta_data"  <?php if(isset($dados['consulta_data'])) print('value="'.$dados['consulta_data'].'"'); else print('value="'.date('Y-m-d', time()).'"');?> required>
                     </div>
-                    <div class="form-group col-xs-12">
+                    <div class="form-group col-xs-6">
                         <label for="consulta_desc">Descrição</label>
-                        <input type="text" class="form-control" name="consulta_desc" id="consulta_desc"  placeholder="Código do lote" <?php if(isset($dados['consulta_desc'])) print('value="'.$dados['consulta_desc'].'"');?> required>
+                        <input type="text" class="form-control" name="consulta_desc" id="consulta_desc"  placeholder="Descrição" <?php if(isset($dados['consulta_desc'])) print('value="'.$dados['consulta_desc'].'"');?> required>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="consulta_funcionario">Medico</label>
@@ -661,8 +661,8 @@ class View {
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                    <a onClick="history.go(-1)" class='btn btn-primary pull-left'>Voltar</a>
-                    <input type="submit" name="submit" value="Confirmar" class='btn btn-success pull-right'>
+                    <a onClick="history.go(-1)" class='btn btn-flat btn-primary pull-left'>Voltar</a>
+                    <input type="submit" name="submit" value="Confirmar" class='btn btn-flat btn-success pull-right'>
                     </form>
                 </div>
         </div>
@@ -690,8 +690,8 @@ class View {
                 ?>
                  <div class="invoice row no-print container-fluid bg-navy" style="padding: 10px">
                         <div class="col-xs-12">
-                        <a href="#"  class="btn btn-default btn-flat pull-left" onclick="history.go(-1)"><i class="fa fa-step-backward"></i> Voltar</a>
-                        <a href="#"  class="btn btn-default btn-flat pull-right" onclick="window.print()"><i class="fa fa-print"></i> Imprimir</a>
+                        <a href="#"  class="btn btn-flat btn-default  pull-left" onclick="history.go(-1)"><i class="fa fa-step-backward"></i> Voltar</a>
+                        <a href="#"  class="btn btn-flat btn-default  pull-right" onclick="window.print()"><i class="fa fa-print"></i> Imprimir</a>
                         </div>
                     </div>
                 <section class="invoice">
@@ -795,7 +795,7 @@ class View {
         if($comando!="Buscar")
         {
             ?>
-            <div class="box box-primary">
+            <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Relátorio vacinação</h3>
                 </div>
@@ -813,10 +813,10 @@ class View {
                             <input type="datetime-local" class="form-control" name="datafim" id="datafim"  <?php if(isset($tempoFinal)) print("value='".$tempoFinal."'") ?>>
                         </div>
                         <div class="form-group col-xs-6">
-                        <div class="btn-group pull-left">
-                            <input type="submit" name="submit" value="Dia" class='btn bg-navy btn-flat'>
-                            <input type="submit" name="submit" value="Semana" class='btn bg-navy btn-flat'>
-                            <input type="submit" name="submit" value="Mes" class='btn bg-navy btn-flat'>
+                        <div class="btn btn-flat-group pull-left">
+                            <input type="submit" name="submit" value="Dia" class='btn btn-flat bg-navy '>
+                            <input type="submit" name="submit" value="Semana" class='btn btn-flat bg-navy '>
+                            <input type="submit" name="submit" value="Mes" class='btn btn-flat bg-navy '>
                         </div>   
                         
                         </div>
@@ -824,8 +824,8 @@ class View {
                     <!-- /.box-body -->
     
                     <div class="box-footer">
-                        <a onClick="history.go(-1)" class='btn btn-default pull-left btn-flat'>Voltar</a>
-                        <input type="submit" name="submit" value="Buscar"  class='btn btn-success pull-right btn-flat'>
+                        <a onClick="history.go(-1)" class='btn btn-flat btn-default pull-left '>Voltar</a>
+                        <input type="submit" name="submit" value="Buscar"  class='btn btn-flat btn-success pull-right '>
               
                     </form>
                     </div>

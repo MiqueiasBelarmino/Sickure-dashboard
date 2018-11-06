@@ -58,12 +58,12 @@
                 "scrollX"     : true,
                 "order"       : [[ 0, "desc" ]],
                 'language'    : {
-                    "emptyTable"  :"Sem dados disponíveis na tabela",
+                    "emptyTable"  :"Nenhum registro encontrado",
                     "search"      : "Buscar:",
-                    "lengthMenu"  : "Mostrar _MENU_ Registros",
+                    "lengthMenu"  : "_MENU_ resultados por página",
                     "info"        : "Mostrando de _START_ a _END_ de _TOTAL_ registro(s)",
-                    "infoEmpty"   : "Mostrando 0 a 0 de 0 registros",
-                    "infoFiltered": "(filtrado de um total de _MAX_ registros)",
+                    "infoEmpty"   : "Mostrando 0 até 0 de 0 registros",
+                    "infoFiltered": "(Filtrados de _MAX_ registros)",
                     "paginate"    : {
                             "first"   :"Primeiro",
                             "last"    :"Último",
@@ -82,18 +82,19 @@
                 "scrollX"     : true,
                 "order"       : [[ 0, "desc" ]],
                 'language'    : {
-                    "emptyTable"  :"Sem dados disponíveis na tabela",
+                    "emptyTable"  :"Nenhum registro encontrado",
                     "search"      : "Buscar:",
-                    "lengthMenu"  : "Mostrar _MENU_ Registros",
+                    "lengthMenu"  : "_MENU_ resultados por página",
                     "info"        : "Mostrando de _START_ a _END_ de _TOTAL_ registro(s)",
-                    "infoEmpty"   : "Mostrando 0 a 0 de 0 registros",
-                    "infoFiltered": "(filtrado de um total de _MAX_ registros)",
+                    "infoEmpty"   : "Mostrando 0 até 0 de 0 registros",
+                    "infoFiltered": "(Filtrados de _MAX_ registros)",
                     "paginate"    : {
                             "first"   :"Primeiro",
                             "last"    :"Último",
                             "next"    :"Próximo",
                             "previous":"Anterior"
                     }
+                    
                 }
             });
             $('.select2').select2();

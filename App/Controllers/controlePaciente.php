@@ -64,20 +64,21 @@ class controlePaciente extends controleGeral {
             {
                 View::includeHeader();
                 ?>
-                <div class="box box-primary">
-                
-                <?php
-
-                    ?>
-                <div class="box-header">
-                    <h3 class="box-title">Lista de Pacientes</h3>
-                    <br>
-                    <a href="?pag=paciente&acao=novo" class="btn btn-info pull-left">Adicionar Paciente</a>
+                <div class="box no-print ">
+                    <div class="box-body">
+                    <a href="?pag=paciente&acao=novo" class="btn btn-info pull-left btn-flat">Adicionar Paciente</a>
                     <form action='?pag=paciente&acao=listar' method='post' class="pull-right">
                         <input type="hidden" name='busca' <?php if(isset($_POST['busca'])) print("value='".$_POST['busca']."'"); ?>>
-                        <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo <input type='radio' name='ativo' value='0' <?php if(isset($_POST['ativo']) && $_POST['ativo']==0 ) print("checked"); ?>> Inativo
-                        <input type="submit" name='buscar' value='Filtrar' class="btn btn-info">
+                        <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo <input type='radio' name='ativo' value='0' <?php if(isset($_POST['ativo']) && $_POST['ativo']==0 ) print("checked"); ?> style="margin-left: 10px"> Inativo
+                        <input type="submit" name='buscar' value='Filtrar' class="btn btn-default btn-flat"  style="margin-left:10px">
                     </form>
+                    </div>
+                </div>
+
+                <div class="box box-default">
+
+                <div class="box-header">
+                    <h3 class="box-title">Lista de Pacientes</h3>
                 </div>
                     <!-- /.-header -->
                     <div class="box-body">
@@ -113,8 +114,8 @@ class controlePaciente extends controleGeral {
                                     </td>
                                     <td>
                                         <a href="?pag=paciente&acao=editar&id=<?php print($func['paciente_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=paciente&acao=desativar&id=<?php print($func['paciente_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-trash"></i></a>
                                         <a href="?pag=paciente&acao=visualizar&id=<?php print($func['paciente_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></a>
+                                        <a href="?pag=paciente&acao=desativar&id=<?php print($func['paciente_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
                                     </td>
                                 </tr>
                                 <?php
@@ -144,21 +145,7 @@ class controlePaciente extends controleGeral {
                 $funcDB = new Paciente();
                 $res = $funcDB->select($_GET['id']);
                 View::formPaciente($res, false);
-                ?>
-                <table>
-                    <tr>
-                        <td><a href="?pag=paciente&acao=editar&id=<?php print($_GET['id'])?>">Editar</a></td>
-                        <?php 
-                        if($res['paciente_ativo']==1) print('<td><a href="?pag=paciente&acao=desativar&id='.$_GET['id'].'">Desativar</a></td>');
-                        else print('<td><a href="?pag=paciente&acao=ativar&id='.$_GET['id'].'">Reativar</a></td>');
-                        ?>
-                        
-                        <td><a href="?pag=paciente&acao=trocasenha&id=<?php print($_GET['id'])?>">Alterar Senha</a></td>
-                        <td><a href="?pag=paciente&acao=resetarsenha&id=<?php print($_GET['id'])?>">Resetar Senha</a></td>
-                    </tr>
-                </table>
-                    
-                <?php
+               
                 View::includeFooter();
             }
             else if($acao=="resetarsenha")

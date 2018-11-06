@@ -116,19 +116,21 @@ class controleMedicamento extends controleGeral
             {
                 View::includeHeader();
                 ?>
-                <div class="box box-primary">
-                <?php
-
-                    ?>
-                <div class="box-header">
-                    <h3 class="box-title">Lista de Medicamentos</h3>
-                    <br>
-                    <a href="?pag=medicamento&acao=novo" class="btn btn-info pull-left">Adicionar Medicamento</a>
+                <div class="box box-default">
+                    <div class="box-body">
+                    <a href="?pag=medicamento&acao=novo" class="btn btn-flat btn-info pull-left">Adicionar Medicamento</a>
                     <form action='?pag=medicamento&acao=listar' method='post' class="pull-right">
                         <input type="hidden" name='busca' <?php if(isset($_POST['busca'])) print("value='".$_POST['busca']."'"); ?>>
-                        <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo <input type='radio' name='ativo' value='0' <?php if(isset($_POST['ativo']) && $_POST['ativo']==0 ) print("checked"); ?>> Inativo
-                        <input type="submit" name='buscar' value='Filtrar' class="btn btn-info">
+                        <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo 
+                        <input type='radio' name='ativo' value='0' <?php if(isset($_POST['ativo']) && $_POST['ativo']==0 ) print("checked"); ?> style="margin-left: 10px"> Inativo
+                        <input type="submit" name='buscar' value='Filtrar' class="btn btn-flat btn-flat btn-default" style="margin-left:10px">
                     </form>
+                    </div>
+                </div>
+
+                <div class="box box-default">
+                <div class="box-header">
+                    <h3 class="box-title">Lista de Medicamentos</h3>
                 </div>
                     <!-- /.-header -->
                     <div class="box-body">
@@ -151,16 +153,16 @@ class controleMedicamento extends controleGeral
                                 <tr>
                                     <td><a href="?pag=medicamento&acao=visualizar&id=<?php print($func['medicamento_id']) ?>" style="color: green !important;"><?php print($func['medicamento_nome']) ?></a></td>
                                     <td>
-                                        <a href="?pag=medicamento&acao=editar&id=<?php print($func['medicamento_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=medicamento&acao=visualizar&id=<?php print($func['medicamento_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></a>
+                                        <a href="?pag=medicamento&acao=editar&id=<?php print($func['medicamento_id']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <a href="?pag=medicamento&acao=visualizar&id=<?php print($func['medicamento_id']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"></i></a>
                                         <?php
                                             if($func['medicamento_ativo']==1):
                                         ?>
-                                        <a href="?pag=medicamento&acao=desativar&id=<?php print($func['medicamento_id']); ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
+                                        <a href="?pag=medicamento&acao=desativar&id=<?php print($func['medicamento_id']); ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
                                         <?php
                                             else:
                                         ?>
-                                            <a href="?pag=medicamento&acao=ativar&id=<?php print($func['medicamento_id']); ?>" class="btn btn-success btn-flat"><i class="fa fa-power-off"></i></a>
+                                            <a href="?pag=medicamento&acao=ativar&id=<?php print($func['medicamento_id']); ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"></i></a>
                                         <?php
                                             endif;
                                         ?>        
@@ -200,19 +202,23 @@ class controleMedicamento extends controleGeral
                 $res = $funcDB->select($_GET['id']);
                 View::formMedicamento($res, false);
                 ?>
-                <div class="box box-primary">
-                <?php
 
-                    ?>
-                <div class="box-header">
-                    <!-- h3 class="box-title">Lote Medicamento</h3-->
-                    <br>
-                    <a href="?pag=medicamento&acao=novolote&medicamento_id=<?php print($_GET['id']); ?>" class="btn btn-info pull-left">Adicionar lote</a>
+                <div class="box">
+                    <div class="box-body">
+                    <a href="?pag=medicamento&acao=novolote&medicamento_id=<?php print($_GET['id']); ?>" class="btn btn-flat btn-info pull-left">Adicionar lote</a>
                     <form action='' method='post' class="pull-right">
                         <input type="hidden" name='busca' <?php if(isset($_POST['busca'])) print("value='".$_POST['busca']."'"); ?>>
-                        <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo <input type='radio' name='ativo' value='0' <?php if(isset($_POST['ativo']) && $_POST['ativo']==0 ) print("checked"); ?>> Inativo
-                        <input type="submit" name='buscar' value='Filtrar' class="btn btn-info">
+                        <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo 
+                        <input type='radio' name='ativo' value='0' <?php if(isset($_POST['ativo']) && $_POST['ativo']==0 ) print("checked"); ?> style="margin-left: 10px"> Inativo
+                        <input type="submit" name='buscar' value='Filtrar' class="btn btn-flat btn-default" style="margin-left:10px">
                     </form>
+                    </div>
+                </div>
+
+                <div class="box box-default">
+     
+                <div class="box-header">
+                    <h3 class="box-title">Lote</h3>
                 </div>
                     <!-- /.-header -->
                     <div class="box-body">
@@ -252,17 +258,17 @@ class controleMedicamento extends controleGeral
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="?pag=medicamento&acao=editarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=medicamento&acao=visualizarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></a>
+                                        <a href="?pag=medicamento&acao=editarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <a href="?pag=medicamento&acao=visualizarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"></i></a>
                                         
                                         <?php
                                             if($vaclot['mlote_ativo']==1):
                                         ?>
-                                        <a href="?pag=medicamento&acao=desativarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
+                                        <a href="?pag=medicamento&acao=desativarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
                                         <?php
                                             else:
                                         ?>
-                                            <a href="?pag=medicamento&acao=ativarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-success btn-flat"><i class="fa fa-power-off"></i></a>
+                                            <a href="?pag=medicamento&acao=ativarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"></i></a>
                                         <?php
                                             endif;
                                         ?>                        
