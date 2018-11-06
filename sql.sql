@@ -1,6 +1,6 @@
 SELECT * FROM Funcionario;
 
-DELETE FROM Funcionario WHERE funcionario_id=5;
+DELETE FROM Funcionarsickureio WHERE funcionario_id=5;
 
 INSERT INTO Medico (funcionario_id, medico_crm) VALUES (1,"32131");
 

@@ -1,5 +1,5 @@
 
-
+DROP DATABASE IF EXISTS SicKure;
 CREATE DATABASE SicKure;
 
 USE SicKure;
@@ -133,9 +133,11 @@ CREATE TABLE Consulta
 (
 	consulta_id INT PRIMARY KEY AUTO_INCREMENT, #permitir varias consultas no mesmo dia
 	paciente_id INT NOT NULL,
-    funcionario_id INT NOT NULL,
+    funcionario_id INT,
     consulta_tipo INT DEFAULT 1, #1 = consulta realizada, 2 = agendamento, 0 = faltou agendamento
     consulta_data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    consulta_ativo INT DEFAULT 1,
+    consulta_desc VARCHAR(50),
 	FOREIGN KEY(paciente_id) REFERENCES Paciente(paciente_id),
     FOREIGN KEY(funcionario_id) REFERENCES Funcionario(funcionario_id)
 );
@@ -170,4 +172,4 @@ CREATE TABLE Fila
     fila_tiposaida INT DEFAULT 0, #0 = em fila, 1 = vez executada, 2 = desistencia
     FOREIGN KEY(paciente_id) REFERENCES Paciente(paciente_id),
     FOREIGN KEY(funcionario_id) REFERENCES Funcionario(funcionario_id)
-);
+);sickure
