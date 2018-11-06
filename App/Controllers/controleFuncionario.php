@@ -37,13 +37,7 @@ class controleFuncionario extends controleGeral {
                 View::includeFooter();
             }
             
-            
-            
-            
-            
-            
-            
-            
+
             else if($acao=="novo")
             {
                 View::includeHeader("Funcionário");
@@ -101,11 +95,9 @@ class controleFuncionario extends controleGeral {
             {
                 View::includeHeader("Funcionário");
                 ?>
+               
                 <div class="box box-primary">
                 
-                <?php
-
-                    ?>
                     <div class="box-header">
                         <h3 class="box-title">Lista de Funcionários</h3>
                         <br>

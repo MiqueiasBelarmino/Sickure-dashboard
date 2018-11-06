@@ -27,6 +27,8 @@
 <script src="layout/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="layout/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="layout/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- Select2 -->
+<script src="layout/select2/dist/js/select2.full.min.js"></script>
 <!-- AdminLTE App -->
 <script src="layout/dist/js/adminlte.min.js"></script>
 
@@ -94,12 +96,22 @@
                     }
                 }
             });
-            $('.select2').select2();
 
-            print = function(){
+            
+        });
+         $('.select2').select2();
+        print = function(){
                 window.print();
             }
-        })
+
+        $(function() {
+            $('#crm').change(function(){
+                if($(this).val() == 0)
+                    $('#hidden_crm').hide();
+                else
+                    $('#hidden_crm').show();
+            });
+        });
     </script>
 </body>
 </html>

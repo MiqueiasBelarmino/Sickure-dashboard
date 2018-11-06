@@ -141,6 +141,17 @@ class View {
                             <label for="funcionario_celular">Celular</label>
                             <input type="text" class="form-control" name="funcionario_celular" id="funcionario_celular" placeholder="Informe o celular" <?php if(isset($dados['funcionario_celular'])) print('value="'.$dados['funcionario_celular'].'"'); if(!$editable) print("disabled") ?>>
                         </div>
+                        <div class="form-group col-xs-6">
+                        <label>Cargo</label>
+                        <select class="form-control select2" style="width: 100%;" id="crm" >
+                            <option selected="selected" value="0">Atendente</option>
+                            <option value="1">Médico</option>
+                        </select>
+                        </div>
+                        <div id="hidden_crm" class="form-group col-xs-6" style="display:none">
+                            <label for="funcionario_celular">CRM</label>
+                            <input type="text" class="form-control" name="funcionario_celular" id="funcionario_celular" placeholder="Informe o celular" <?php if(isset($dados['funcionario_celular'])) print('value="'.$dados['funcionario_celular'].'"'); if(!$editable) print("disabled") ?>>
+                        </div>
                     </div>
                     <!-- /.box-body -->
 

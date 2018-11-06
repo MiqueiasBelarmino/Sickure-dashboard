@@ -17,6 +17,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="layout/Ionicons/css/ionicons.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="layout/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="layout//select2/dist/css/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="layout/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
