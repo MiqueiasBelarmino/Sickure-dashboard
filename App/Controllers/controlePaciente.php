@@ -31,10 +31,9 @@ class controlePaciente extends controleGeral {
                 View::includeHeader();
                 if($res==-1)
                 {
-                    print("Falha.");
+                    print("<script>alert('Falha.');setTimeout(function(){history.go(-1);}, 0);</script>");
                 }
-                else print("Inserido.");
-                View::includeFooter();
+                else print("<script>setTimeout(function(){history.go(-1);}, 0);</script>");
             }
             else if($acao=="alterar")
             {

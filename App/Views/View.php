@@ -231,7 +231,7 @@ class View {
         ?>
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Adicionar Paciente</h3>
+                    <h3 class="box-title">Paciente</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->

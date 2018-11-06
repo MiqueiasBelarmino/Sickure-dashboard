@@ -83,7 +83,7 @@ class controleVacina extends controleGeral
                 {
                     print("<script>alert('Falha.');setTimeout(function(){history.go(-2);}, 0);</script>");
                 }
-                else print("<script>setTimeout(function(){history.go(-1);}, 0);</script>");
+                else print("<script>setTimeout(function(){history.go(-2);}, 0);</script>");
                 View::includeFooter();
             }
             else if($acao=="alterarlote")

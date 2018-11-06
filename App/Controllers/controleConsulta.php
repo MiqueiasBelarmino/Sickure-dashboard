@@ -32,9 +32,9 @@ class controleConsulta extends controleGeral {
                 View::includeHeader();
                 if($res==-1)
                 {
-                    print("Falha.");
+                    print("<script>alert('Falha.');setTimeout(function(){history.go(-1);}, 0);</script>");
                 }
-                else print("Inserido.");
+                else print("<script>setTimeout(function(){history.go(-1);}, 0);</script>");
                 View::includeFooter();
             }
             else if($acao=="alterar")
