@@ -159,7 +159,7 @@ class controleVacina extends controleGeral
                                         <a href="?pag=vacina&acao=editar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i> Editar</a>
                                         <a href="?pag=vacina&acao=visualizar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"> Visualizar</i></a>
                                         <?php
-                                            if($vaclot['vacina_ativo']==1):
+                                            if($func['vacina_ativo']==1):
                                         ?>
                                             <a href="?pag=vacina&acao=desativar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
                                         <?php

@@ -523,7 +523,9 @@ class controleVacinacao extends controleGeral {
                                     {
                                         print("Falha.");
                                     }
-                                    else print("Inserido.");
+                                    else 
+                                        print("<script> location.replace('?pag=vacinacao&acao=visualizarpaciente&paciente_id=".$_GET['paciente_id']."'); </script>");
+
                                 }
                                 else
                                 {

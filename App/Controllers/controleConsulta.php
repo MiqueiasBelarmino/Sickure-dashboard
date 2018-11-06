@@ -237,7 +237,7 @@ class controleConsulta extends controleGeral {
                                     $dados['consulta_tipo'] = 2;
                                     $useDB = new Consulta();
                                     $res = $useDB->insert($dados);
-                                    Header('location: '.$_SESSION['return_url']);
+                                    print("<script>history.go(-2);</script>");
                                 }
                             }
                         }

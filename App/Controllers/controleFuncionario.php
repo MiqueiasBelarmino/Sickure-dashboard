@@ -32,7 +32,7 @@ class controleFuncionario extends controleGeral {
                 View::includeHeader("Funcionário");
                 if($res==-1)
                 {
-                    print("Falha ao inserir.");
+                    print("<script>alert('Falha ao inserir.');history.go(-1);</script>");
                 }
                 else
 				{
@@ -47,7 +47,7 @@ class controleFuncionario extends controleGeral {
 						}
 						$novores = $funcDB->setCargo($res, $cargo);
 					}
-					print("Sucesso.");
+					print("<script>history.go(-2);</script>");
 				}
                 print("<br><br>Redirecionando para a pagina anterior...");
                 View::includeFooter();
@@ -209,10 +209,10 @@ class controleFuncionario extends controleGeral {
                         {
                             $funcDB = new Funcionario();
                             $res = $funcDB->trocaSenha($_GET['id'],$_POST['atualSenha'],$_POST['novaSenha']);
-                            if($res==0) print("Senha atual incorreta.");
-                            else print("Senha trocada com sucesso.");
+                            if($res==0) print('<script>alert("Senha atual incorreta."); history.go(-1); </script>');
+                            else print('<script> history.go(-2) </script>');
                         }
-                        else print("As senhas não são iguais.");
+                        else print('<script>alert("As senhas não são iguais."); history.go(-1); </script>');
                     }
                     
                 }

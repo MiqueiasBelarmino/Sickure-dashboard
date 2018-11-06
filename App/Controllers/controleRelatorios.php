@@ -18,7 +18,6 @@ class controleRelatorios extends controleGeral {
             else if($acao=="relatorioestoquemed")
             {
                 View::includeHeader();
-                ?> <a href="#" onClick="history.go(-1)" class="not_print">Voltar</a> <?php
                 View::relatorioEstoqueMed();
                 View::includeFooter();
             }

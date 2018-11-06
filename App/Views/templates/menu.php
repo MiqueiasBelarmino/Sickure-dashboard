@@ -55,6 +55,7 @@ if(isset($_SESSION['usuario_logado'])):
               <li class="user-footer">
                 <div class="pull-left">
                   <a href="?pag=funcionario&acao=editar&id=<?php print($_SESSION['usuario_logado']['funcionario_id']) ?>" class="btn btn-default btn-flat">Perfil</a>
+                  <a href='?pag=funcionario&acao=trocasenha&id=<?php print($_SESSION['usuario_logado']['funcionario_id'])?>' class='btn btn-flat btn-default'>Alterar Senha</a>
                 </div>
                 <div class="pull-right">
                   <a href="?pag=login&acao=logout" class="btn btn-default btn-flat">Sair</a>

@@ -26,24 +26,41 @@ class View {
     public static function funcTrocaSenhaForm($id)
     {
         ?>
-        <form action="?pag=funcionario&acao=trocasenha&id=<?php print($id);?>" method="post">
-            <table>
-                <tr>
-                    <th><label for="novaSenha">Nova senha:</label></th>
-                    <td><input type="password" name="novaSenha"><td>
-                </tr>
-                <tr>
-                    <th><label for="novaSenha2">Confirmar senha:</label></th>
-                    <td><input type="password" name="novaSenha2"><td>
-                </tr>
-                <tr>
-                    <th><label for="atualSenha">Senha atual</label></th>
-                    <td><input type="password" name="atualSenha"><td>
-                </tr>
-            </table>
-            <input type="submit" name="submit" value="Salvar">
-        </form>
-        <?php
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Medicamento</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form action="?pag=funcionario&acao=trocasenha&id=<?php print($id);?>" method="post" role="form">
+                <div class="box-body row">
+                    <div class="form-group col-xs-6">
+                        <label for="novaSenha">Nova senha</label>
+                        <input type="password" class="form-control" name="novaSenha" id="novaSenha"  placeholder="Nova senha" required>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="novaSenha2">Confirmar senha</label>
+                        <input type="password" class="form-control" name="novaSenha2" id="novaSenha2"  placeholder="Confirmar senha" required>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="atualSenha">Senha atual</label>
+                        <input type="password" class="form-control" name="atualSenha" id="atualSenha"  placeholder="Senha atual" required>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                <a href="index.php" onClick="history.go(-1)" class='btn btn-flat btn-default pull-left'>Voltar</a>
+                <?php
+                
+                    if(isset($dados['funcionario_id'])) print("<input type='hidden' name='funcionario_id' value='".$dados['medicamento_id']."'>");
+                     print("<input type='submit' name='submit' value='Salvar' class='btn btn-flat btn-success pull-right'>");
+                    ?>
+                </div>
+            </form>
+        </div>
+        <!-- /.box -->
+    <?php
     }
     
     
@@ -173,7 +190,6 @@ class View {
                         if(!$editable){
                         ?>
                         <div id="editar">
-                            <a href='?pag=funcionario&acao=trocasenha&id=<?php print($_GET['id'])?>' class='btn btn-flat btn-default pull-right ' style="margin-left:5px">Alterar Senha</a>
                             <a href='?pag=funcionario&acao=resetarsenha&id=<?php print($_GET['id'])?>' class='btn btn-flat btn-default pull-right '>Resetar Senha</a>
                         </div>
                         <?php
@@ -698,7 +714,7 @@ class View {
                 ?>
                  <div class="invoice row no-print container-fluid bg-navy" style="padding: 10px">
                         <div class="col-xs-12">
-                        <a href="#"  class="btn btn-flat btn-default  pull-left" onclick="history.go(-1)"><i class="fa fa-step-backward"></i> Voltar</a>
+                        <a href="?pag=relatorios&acao=relatoriovacinacao"  class="btn btn-flat btn-default  pull-left" ><i class="fa fa-step-backward"></i> Voltar</a>
                         <a href="#"  class="btn btn-flat btn-default  pull-right" onclick="window.print()"><i class="fa fa-print"></i> Imprimir</a>
                         </div>
                     </div>
@@ -707,7 +723,7 @@ class View {
                     <div class="row">
                         <div class="col-xs-12">
                             <h2 class="page-header">
-                            <i class="fa fa-heartbeat"></i><strong> SicK</strong>ure, Vacinas aplicadas.
+                            <i class="fa fa-heartbeat"></i><strong> Sic</strong>Kure, Vacinas aplicadas.
                             <small class="pull-right" style="margin-top:-5px">Periodo: <?php print("<b>".$inicio."</b> até <b>".$fim."</b>"); ?><br>Gerado em: <?php print("<b>".date('Y-m-d H:i:s')."</b>"); ?></small>
                             </h2>
                         </div>
@@ -846,73 +862,116 @@ class View {
     
     public static function relatorioEstoqueMed()
     {
-        print("ESTOQUE DE MEDICAMENTO<br>");
-        print("<br>Gerado em: <b>".date('Y-m-d H:i:s')."</b><br>------------------<br><br>");
-        $dataagora = date_create(date('Y-m-d', time()));
-        $medsDB = new Medicamento();
-        $meds = $medsDB->search();
-        foreach($meds as $med)
-        {
-            if($med['medicamento_ativo']==1)
+        ?>
+            <div class="invoice row no-print container-fluid bg-navy" style="padding: 10px">
+                <div class="col-xs-12">
+                <a href="?pag=relatorios&acao=relatoriovacinacao"  class="btn btn-flat btn-default  pull-left" ><i class="fa fa-step-backward"></i> Voltar</a>
+                <a href="#"  class="btn btn-flat btn-default  pull-right" onclick="window.print()"><i class="fa fa-print"></i> Imprimir</a>
+                </div>
+            </div>
+        <section class="invoice">
+        <!-- title row -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="page-header">
+                    <i class="fa fa-heartbeat"></i><strong> Sic</strong>Kure, Estoque de Medicamentos.
+                    <small class="pull-right" style="margin-top:-5px">Gerado em: <?php print("<b>".date('Y-m-d H:i:s')."</b>"); ?></small>
+                    </h2>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- info row -->
+            <div class="row invoice-info">
+            <?php
+            $dataagora = date_create(date('Y-m-d', time()));
+            $medsDB = new Medicamento();
+            $meds = $medsDB->search();
+            foreach($meds as $med)
             {
-                $total = 0;
-                $total_venc = 0;
-                print("<br><br>Medicamento: ".$med['medicamento_nome']);
-                $lotesDB = new LoteMedicamento();
-                $lotes = $lotesDB->searchPorMedicamentos($med['medicamento_id']);
-                ?>
-                    <table>
-                        <tr>
-                            <th>COD</th>
-                            <th>Estoque</th>
-                            <th>Chegada</th>
-                            <th>Vencimento</th>
-                        </tr>
-                    <?php
-                foreach($lotes as $lote)
+                if($med['medicamento_ativo']==1)
                 {
-                    $total += $lote['mlote_qtd'];
-                    
-                    print("<tr><td>".$lote['mlote_codigo']."</td>");
-                    print("<td>".$lote['mlote_qtd']."</td>");
-                    print("<td>".$lote['mlote_chegada']."</td>");
-                    print("<td>");
-                    $venc = date_create($lote['mlote_vencimento']);
-                    $diff=date_diff($dataagora,$venc);
-                    $diffDias = $diff->format("%R%a");
-                    if($diffDias<0)
-                    {
-                        $total_venc += $lote['mlote_qtd'];
-                        print('<font color="red">');
-                    }
-                    else
-                    {
-                        if($diffDias==0) print('<font color="yellow">');
-                        else print('<font color="green">');
-                    }
-                    print($lote['mlote_vencimento']."</font></td></tr>");
-                }
-                ?>
+                    $total = 0;
+                    $total_venc = 0;
+                    print("<h2>Medicamento: ".$med['medicamento_nome']."</h2>");
+                    $lotesDB = new LoteMedicamento();
+                    $lotes = $lotesDB->searchPorMedicamentos($med['medicamento_id']);
+            ?>
+            <!-- Table row -->
+            <div class="row">
+                <div class="col-xs-12 table-responsive">
+                    <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Estoque</th>
+                        <th>Chegada</th>
+                        <th>Vencimento</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach($lotes as $lote)
+                        {
+                            $total += $lote['mlote_qtd'];
+                            
+                            print("<tr><td>".$lote['mlote_codigo']."</td>");
+                            print("<td>".$lote['mlote_qtd']."</td>");
+                            print("<td>".$lote['mlote_chegada']."</td>");
+                            print("<td>");
+                            $venc = date_create($lote['mlote_vencimento']);
+                            $diff=date_diff($dataagora,$venc);
+                            $diffDias = $diff->format("%R%a");
+                            if($diffDias<0)
+                            {
+                                $total_venc += $lote['mlote_qtd'];
+                                print('<font color="red">');
+                            }
+                            else
+                            {
+                                if($diffDias==0) print('<font color="yellow">');
+                                else print('<font color="green">');
+                            }
+                            print($lote['mlote_vencimento']."</font></td></tr>");
+                        }
+                        ?>
+                    </tbody>
                     </table>
-                    <br>
-                    <table>
-                        <tr>
-                            <th>Total</th>
-                            <th>___</th>
-                            <th>Não Vencidas</th>
-                            <th>Vencidas</th>
-                        </tr>
-                        <tr>
-                <?php
-                    print("<td>".$total."</td><td>___</td>");
-                    print("<td>".($total-$total_venc)."</td>");
-                    print("<td>".$total_venc."</td>");
-                ?> 
-                        </tr>
-                    </table><br><br><br><br>
-                <?php
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- Table row -->
+            <div class="row">
+                <div class="col-xs-12 table-responsive">
+                    <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Total</th>
+                        <th>Não Vencidas</th>
+                        <th>Vencidas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        print("<td>".$total."</td>");
+                        print("<td>".($total-$total_venc)."</td>");
+                        print("<td>".$total_venc."</td>");
+                    ?> 
+                    </tbody>
+                    </table>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <?php
+                }
             }
-        }
+            ?>
+            
+        </section>
+        <!-- /.content -->
+        <?php
     }
     
 }
