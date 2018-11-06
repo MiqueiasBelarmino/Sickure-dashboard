@@ -31,9 +31,9 @@ class controlePaciente extends controleGeral {
                 View::includeHeader();
                 if($res==-1)
                 {
-                    print("<script>alert('Falha.');setTimeout(function(){history.go(-1);}, 0);</script>");
+                    print("<script>alert('Falha.');setTimeout(function(){history.go(-2);}, 0);</script>");
                 }
-                else print("<script>setTimeout(function(){history.go(-1);}, 0);</script>");
+                else print("<script>setTimeout(function(){history.go(-2);}, 0);</script>");
             }
             else if($acao=="alterar")
             {
