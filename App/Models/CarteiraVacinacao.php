@@ -60,6 +60,25 @@ class CarteiraVacinacao extends Generic
         return $stmt;
     }
     
+    function updateCarteira($paciente_id, $vacina_id, $cvac_data, $dados)
+    {
+        $mypdo = new MyPDO();
+        
+        $pairs = [];
+        $values = [];
+        foreach($dados as $key => $value)
+        {
+            $pairs[] = $key."=?";
+            $values[] = $value;
+        }
+        $sql = "UPDATE ".$this->tablename." SET ".implode(",",$pairs)." WHERE paciente_id=? AND vacina_id=? AND cvac_data=?";
+        $values[] = $paciente_id;
+        $values[] = $vacina_id;
+        $values[] = $cvac_data;
+        $stmt = $mypdo->run($sql,$values);
+        return $stmt->rowCount();
+    }
+    
     function deleteCarteira($paciente_id, $vacina_id, $cvac_data)
     {
         $mypdo = new MyPDO();
