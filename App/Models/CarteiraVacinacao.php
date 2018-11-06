@@ -60,5 +60,10 @@ class CarteiraVacinacao extends Generic
         return $stmt;
     }
     
-    
+    function deleteCarteira($paciente_id, $vacina_id, $cvac_data)
+    {
+        $mypdo = new MyPDO();
+        $stmt = $mypdo->run("DELETE FROM ".$this->tablename." WHERE paciente_id=? AND vacina_id=? AND cvac_data=?",[$paciente_id, $vacina_id, $cvac_data]);
+        return $stmt->rowCount();
+    }
 }
