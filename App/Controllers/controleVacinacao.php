@@ -478,7 +478,7 @@ class controleVacinacao extends controleGeral {
                                 if(isset($_GET['vlote_codigo']))
                                 {
                                     if(isset($_GET['vlote_codigo'])) $dados['vlote_codigo'] = $_GET['vlote_codigo'];
-                                    $dados['funcionario_id'] = 1; //FUNCIONARIO LOGADO
+                                    $dados['funcionario_id'] = $_SESSION['usuario_logado']['funcionario_id']; //FUNCIONARIO LOGADO
                                     if($acao=="vacinar") $dados['cvac_tipo'] = 1;
                                     else if($acao=="agendarvacinar") $dados['cvac_tipo'] = 2;
                                     else if($acao=="registrarvacinar") $dados['cvac_tipo'] = 3;

@@ -9,36 +9,7 @@ class controleFuncionario extends controleGeral {
         {
             $acao = $this->sanitizarString($_REQUEST['acao']);
             
-            if($acao=="teste")
-            {
-                View::includeHeader("Funcionário");
-                $funcDB = new Funcionario();
-                
-                $dados = Array(
-                    "funcionario_nome" => "Cesar",
-                    "funcionario_cpf" => "33207152866",
-                    "funcionario_senha" => "123",
-                    "funcionario_rg" => "321",
-                    "funcionario_dataNascimento" => "1994-06-11",
-                    "funcionario_sexo" => "M",
-                    "funcionario_logradouro" => "seila",
-                    "funcionario_numero" => "32",
-                    "funcionario_bairro" => "Cent",
-                    "funcionario_cidade" => "Pep",
-                    "funcionario_cep" => "19470000",
-                    "funcionario_telefone" => "997721106",
-                    "funcionario_celular" => "997721106"
-                    
-                );
-                
-                $res = $funcDB->insert($dados);
-                
-                print_r($res);
-                View::includeFooter();
-            }
-            
-
-            else if($acao=="novo")
+            if($acao=="novo")
             {
                 View::includeHeader("Funcionário");
                 View::formFuncionario(null, true);
@@ -61,10 +32,27 @@ class controleFuncionario extends controleGeral {
                 View::includeHeader("Funcionário");
                 if($res==-1)
                 {
-                    print("Falha.");
+                    print("Falha ao inserir.");
                 }
-                else print("Inserido.");
+                else
+				{
+					if($_SESSION['usuario_logado']['funcionario_id']!=$dados['funcionario_id'])
+					{
+						$cargo = Array();
+						if($_POST['func_cargo']==0) $cargo['cargo'] = "atendente";
+						else if($_POST['func_cargo']==1)
+						{
+							$cargo['cargo'] = "medico";
+							$cargo['crm'] = $_POST['medico_crm'];
+						}
+						$novores = $funcDB->setCargo($res, $cargo);
+					}
+					print("Sucesso.");
+				}
+                print("<br><br>Redirecionando para a pagina anterior...");
                 View::includeFooter();
+				
+				print("<script>setTimeout(function(){history.go(-2);}, 2500);</script>");
             }
             else if($acao=="alterar")
             {
@@ -81,15 +69,31 @@ class controleFuncionario extends controleGeral {
                 $funcDB = new Funcionario();
                 $res = $funcDB->update($dados['funcionario_id'], $dados);
                 View::includeHeader("Funcionário");
-                /*
+                
                 if($res==-1)
                 {
-                    print("Falha.");
+                    print("Houve uma falha na inserção");
                 }
-                else print("Alterado.");
-                 * */
-                 print_r($res);
+                else
+				{
+					if($_SESSION['usuario_logado']['funcionario_id']!=$dados['funcionario_id'])
+					{
+						$cargo = Array();
+						if($_POST['func_cargo']==0) $cargo['cargo'] = "atendente";
+						else if($_POST['func_cargo']==1)
+						{
+							$cargo['cargo'] = "medico";
+							$cargo['crm'] = $_POST['medico_crm'];
+						}
+						$novores = $funcDB->setCargo($dados['funcionario_id'], $cargo);
+						
+					}
+					print("Sucesso.");
+				}
+				print("<br><br>Redirecionando para a pagina anterior...");
                 View::includeFooter();
+				
+				print("<script>setTimeout(function(){history.go(-2);}, 2500);</script>");
             }
             else if($acao=="listar")
             {
@@ -119,9 +123,7 @@ class controleFuncionario extends controleGeral {
                             <tr>
                             <th>Nome</th>
                             <th>Genero</th>
-                            <th>Atendente</th>
-                            <th>Médico</th>
-                            <th>Administrador</th>  
+                            <th>Função</th>
                             <th>Ações</th>  
                             </tr>
                             </thead>
@@ -136,9 +138,12 @@ class controleFuncionario extends controleGeral {
                                     <tr>
                                         <td style="text-transform: uppercase;"><a href="?pag=funcionario&acao=visualizar&id=<?php print($func['funcionario_id']) ?>" style="color: green !important;"><?php print($func['funcionario_nome']) ?></a></td>
                                         <td><?php print($func['funcionario_sexo']) ?></td>
-                                        <td><?php if(isset($func['atendente_ativo'])) print("Sim"); else print("Não");?></td>
-                                        <td><?php if(isset($func['medico_ativo'])) print("Sim"); else print("Não");?></td>
-                                        <td><?php if(isset($func['administrador_ativo'])) print("Sim"); else print("Não");?></td>
+                                        <?php
+											if(isset($func['administrador_ativo']) && $func['administrador_ativo']!=0) print("<td>Administrador</td>");
+											else if(isset($func['medico_ativo']) && $func['medico_ativo']!=0) print("<td>Medico</td>");
+											else if(isset($func['atendente_ativo']) && $func['atendente_ativo']!=0) print("<td>Atendente</td>");
+											else print("<td>-</td>");
+										?>
                                         <td>
                                             
                                         <a href="?pag=funcionario&acao=editar&id=<?php print($func['funcionario_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
@@ -155,9 +160,7 @@ class controleFuncionario extends controleGeral {
                             <tr>
                             <th>Nome</th>
                             <th>Genero</th>
-                            <th>Atendente</th>
-                            <th>Médico</th>
-                            <th>Administrador</th>
+                            <th>Função</th>
                             <th>Ações</th>
                             </tr>
                             </tfoot>
@@ -174,7 +177,7 @@ class controleFuncionario extends controleGeral {
             {
                 View::includeHeader("Funcionário");
                 $funcDB = new Funcionario();
-                $res = $funcDB->select($_GET['id']);
+                $res = $funcDB->selectComCargos($_GET['id']);
                 View::formFuncionario($res, false);
                 View::includeFooter();
             }
@@ -235,7 +238,7 @@ class controleFuncionario extends controleGeral {
             {
                 View::includeHeader("Funcionário");
                 $funcDB = new Funcionario();
-                $res = $funcDB->select($_GET['id']);
+                $res = $funcDB->selectComCargos($_GET['id']);
                 View::formFuncionario($res, true);
                 View::includeFooter();
             }
