@@ -25,9 +25,9 @@ class controleLogin extends controleGeral {
             }
             else if($acao=="logout")
             {
+                $_SESSION['usuario_logado'] = null; 
                 View::includeHeader();
-                $_SESSION['usuario_logado'] = null;
-                print("<script>history.go(-1);</script>");
+                View::formFuncLogin();
                 View::includeFooter();
             }
             else if($acao=="validarlogin")
@@ -40,7 +40,7 @@ class controleLogin extends controleGeral {
                 if(isset($dados['funcionario_id']))
                 {
                     $_SESSION['usuario_logado'] = $dados;
-                    print("<script>history.go(-1);</script>");
+                    print("<script>location.href='index.php';</script>");
                 }
                 else
                 {

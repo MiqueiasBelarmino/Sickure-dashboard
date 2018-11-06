@@ -141,9 +141,9 @@ class controleFuncionario extends controleGeral {
                                     <tr>
                                         <td style="text-transform: uppercase;"><a href="?pag=funcionario&acao=visualizar&id=<?php print($func['funcionario_id']) ?>" style="color: green !important;"><?php print($func['funcionario_nome']) ?></a></td>
                                         <td><?php print($func['funcionario_sexo']) ?></td>
-                                        <td>Não</td>
+                                        <td><?php if(isset($func['atendente_ativo'])) print("Sim"); else print("Não");?></td>
                                         <td><?php if(isset($func['medico_ativo'])) print("Sim"); else print("Não");?></td>
-                                        <td>Não</td>
+                                        <td><?php if(isset($func['administrador_ativo'])) print("Sim"); else print("Não");?></td>
                                         <td>
                                             
                                         <a href="?pag=funcionario&acao=editar&id=<?php print($func['funcionario_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i></a>

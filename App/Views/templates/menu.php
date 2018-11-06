@@ -1,3 +1,14 @@
+<?php
+if(isset($_SESSION['usuario_logado'])):
+            $perm_administrador = 0;
+            $perm_atendente = 0;
+            $perm_medico = 0;
+            
+            if(isset($_SESSION['usuario_logado']['administrador_ativo'])) $perm_administrador = 1;
+            if(isset($_SESSION['usuario_logado']['atendente_ativo'])) $perm_atendente = 1;
+            if(isset($_SESSION['usuario_logado']['medico_ativo'])) $perm_medico = 1;
+
+?>
 <!-- Main Header -->
   <header class="main-header">
 
@@ -26,7 +37,7 @@
               <!-- The user image in the navbar-->
               <img src="layout/dist/img/avatar.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Hudson Fernando</span>
+              <span class="hidden-xs"><?php print($_SESSION['usuario_logado']['funcionario_nome']); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -34,8 +45,10 @@
                 <img src="layout/dist/img/avatar.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Hudson Fernando - Web Developer
-                  <small>Membro desde Nov. 2012</small>
+                  <?php print($_SESSION['usuario_logado']['funcionario_nome']); ?>
+                  <small>
+                   
+                  </small>
                 </p>
               </li>
               <!-- Menu Footer-->
@@ -44,7 +57,7 @@
                   <a href="#" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sair</a>
+                  <a href="?pag=login&acao=logout" class="btn btn-default btn-flat">Sair</a>
                 </div>
               </li>
             </ul>
@@ -64,13 +77,24 @@
         
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="index.php"><i class="fa fa-dashboard "></i> <span>DASHBOARD</span></a></li>
-        <li><a href="?pag=funcionario&acao=listar"><i class="fa fa-user"></i> <span>Funcionário</span></a></li>
-        <li><a href="?pag=paciente&acao=listar"><i class="fa fa-group"></i> <span>Paciente</span></a></li>
-        <li><a href="?pag=vacina&acao=listar"><i class="fa fa-eyedropper"></i> <span>Vacina</span></a></li>
-        <li><a href="?pag=medicamento&acao=listar"><i class="fa fa-medkit"></i> <span>Medicamento</span></a></li>
-        <li><a href="?pag=consulta&acao=listarpacientes"><i class="fa fa-list-alt"></i> <span>Consulta</span></a></li>
-        <li><a href="?pag=vacinacao&acao=listarpacientes"><i class="fa fa-table"></i> <span>Vacinação</span></a></li>
-        <li><a href="?pag=relatorios&acao=relatorios"><i class="fa fa-file-pdf-o"></i> <span>Relátorios</span></a></li>
+         <?php
+       
+            
+            if($perm_administrador>0)
+                print('<li><a href="?pag=funcionario&acao=listar"><i class="fa fa-user"></i> <span>Funcionário</span></a></li>');
+            if($perm_atendente>0)
+            {
+                print('<li><a href="?pag=paciente&acao=listar"><i class="fa fa-group"></i> <span>Paciente</span></a></li>');
+                print('<li><a href="?pag=vacina&acao=listar"><i class="fa fa-eyedropper"></i> <span>Vacina</span></a></li>');
+                print('<li><a href="?pag=medicamento&acao=listar"><i class="fa fa-medkit"></i> <span>Medicamento</span></a></li>');
+                print('<li><a href="?pag=consulta&acao=listarpacientes"><i class="fa fa-list-alt"></i> <span>Consulta</span></a></li>');
+            }
+            print('<li><a href="?pag=vacinacao&acao=listarpacientes"><i class="fa fa-table"></i> <span>Vacinação</span></a></li>');
+            if($perm_administrador>0)
+              print('<li><a href="?pag=relatorios&acao=relatorios"><i class="fa fa-file-pdf-o"></i> <span>Relátorios</span></a></li>');
+          
+    ?>  
+
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -105,3 +129,6 @@
      -->
      <!-- Main content -->
      <section class="content container-fluid">
+  <?php
+    endif;
+  ?>  

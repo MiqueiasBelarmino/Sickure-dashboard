@@ -2,7 +2,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
+  <?php if(isset($_SESSION['usuario_logado'])): ?>
   <!-- Main Footer -->
   <footer class="main-footer no-print">
     <!-- To the right -->
@@ -12,7 +12,7 @@
     <!-- Default to the left -->
     <strong>Copyright &copy; 2018 <a href="#">Cézinha, Hudson e MiGuéias</a>.</strong> Todos os direitos reservados.
   </footer>
-
+  <?php endif ?>
   <!-- Add the sidebar's background. This div must be placed
   immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>

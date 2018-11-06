@@ -50,4 +50,11 @@ class Funcionario extends Generic
         }
         else return 0;
     }
+
+    function logar($cpf, $senha)
+    {
+        $mypdo = new MyPDO();
+        $row = $mypdo->run("SELECT * FROM ".$this->tablename." NATURAL LEFT OUTER JOIN Administrador NATURAL LEFT OUTER JOIN Medico NATURAL LEFT OUTER JOIN Atendente WHERE ".$this->ativokey."=1 AND funcionario_cpf=? AND funcionario_senha=?",[$cpf,$senha])->fetch();
+        return $row;
+    }
 }

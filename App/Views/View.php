@@ -552,20 +552,38 @@ class View {
     public static function formFuncLogin()
     {
         ?>
-        <form action="?pag=funcionario&acao=validarlogin" method="post">
-            <table>
-                <tr>
-                    <th><label for="email">E-mail</label></th>
-                    <td><input type="text" name="email"></td>
-                </tr>
-                <tr>
-                    <th><label for="senha">Senha</label></th>
-                    <td><input type="password" name="senha"></td>
-                </tr>
-            </table>
-            <br>
-            <input type='submit' name='submit' value='Entrar'>
-        </form>
+        <div class="login-box">
+        <div class="login-logo">
+            <a href="index.php"><b>Sic</b>Kure</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Entre para iniciar sua sessão</p>
+
+            <form action="?pag=login&acao=validarlogin" method="post">
+            <div class="form-group has-feedback">
+                <input type="cpf" class="form-control" name="cpf" placeholder="Informe o CPF">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" name="senha" placeholder="senha">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <!-- /.col -->
+                <div class="col-xs-12">
+                <button type="submit" class="btn btn-primary btn-block btn-flat pull-right" name='submit'>Entrar</button>
+                </div>
+                <!-- /.col -->
+            </div>
+            </form>
+
+
+        </div>
+        <!-- /.login-box-body -->
+        </div>
+        <!-- /.login-box -->
+
         <?php
     }
     
