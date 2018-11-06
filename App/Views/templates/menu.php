@@ -54,7 +54,7 @@ if(isset($_SESSION['usuario_logado'])):
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                  <a href="?pag=funcionario&acao=editar&id=<?php print($_SESSION['usuario_logado']['funcionario_id']) ?>" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
                   <a href="?pag=login&acao=logout" class="btn btn-default btn-flat">Sair</a>
