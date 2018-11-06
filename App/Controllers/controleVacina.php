@@ -156,9 +156,9 @@ class controleVacina extends controleGeral
                                 <tr>
                                     <td><a href="?pag=vacina&acao=visualizar&id=<?php print($func['vacina_id']) ?>" style="color: green !important;"><?php print($func['vacina_nome']) ?></a></td>
                                     <td>
-                                        <a href="?pag=vacina&acao=editar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=vacina&acao=visualizar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"></i></a>
-                                        <a href="?pag=vacina&acao=desativar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
+                                        <a href="?pag=vacina&acao=editar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i> Editar</a>
+                                        <a href="?pag=vacina&acao=visualizar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"> Visualizar</i></a>
+                                        <a href="?pag=vacina&acao=desativar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
                                     </td>
                                 </tr>
                                 <?php
@@ -249,17 +249,17 @@ class controleVacina extends controleGeral
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="?pag=vacina&acao=editarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=vacina&acao=visualizarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"></i></a>
+                                        <a href="?pag=vacina&acao=editarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i> Editar</a>
+                                        <a href="?pag=vacina&acao=visualizarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"> Visualizar</i></a>
                                         
                                         <?php
                                             if($vaclot['vlote_ativo']==1):
                                         ?>
-                                        <a href="?pag=vacina&acao=desativarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
+                                        <a href="?pag=vacina&acao=desativarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
                                         <?php
                                             else:
                                         ?>
-                                            <a href="?pag=vacina&acao=ativarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"></i></a>
+                                            <a href="?pag=vacina&acao=ativarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
                                         <?php
                                             endif;
                                         ?>                        

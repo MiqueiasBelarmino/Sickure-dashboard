@@ -89,7 +89,7 @@ class controlePaciente extends controleGeral {
                             <th>Nome</th>
                             <th>Genero</th>
                             <th>Idade</th>
-                            <th>Ação</th>  
+                            <th>Ações</th>  
                         </tr>
                         </thead>
                         <tbody>
@@ -113,9 +113,9 @@ class controlePaciente extends controleGeral {
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="?pag=paciente&acao=editar&id=<?php print($func['paciente_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=paciente&acao=visualizar&id=<?php print($func['paciente_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></a>
-                                        <a href="?pag=paciente&acao=desativar&id=<?php print($func['paciente_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
+                                        <a href="?pag=paciente&acao=editar&id=<?php print($func['paciente_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i> Editar</a>
+                                        <a href="?pag=paciente&acao=visualizar&id=<?php print($func['paciente_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"> Visualizar</i></a>
+                                        <a href="?pag=paciente&acao=desativar&id=<?php print($func['paciente_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
                                     </td>
                                 </tr>
                                 <?php
@@ -127,7 +127,7 @@ class controlePaciente extends controleGeral {
                             <th>Nome</th>
                             <th>Genero</th>
                             <th>Idade</th>
-                            <th>Ação</th>
+                            <th>Ações</th>
                         </tr>
                         </tfoot>
                     </table>
@@ -186,7 +186,7 @@ class controlePaciente extends controleGeral {
                 View::includeHeader();
                 $funcDB = new Paciente();
                 $res = $funcDB->setActive($_GET['id'],0);
-                header('Location: '.$_SERVER['PHP_SELF']."?pag=paciente&acao=listar");
+                print('<script> location.replace("?pag=paciente&acao=listar"); </script>');
                 View::includeFooter();
             }
             else if($acao=="ativar")
@@ -194,7 +194,7 @@ class controlePaciente extends controleGeral {
                 View::includeHeader();
                 $funcDB = new Paciente();
                 $res = $funcDB->setActive($_GET['id'],1);
-                header('Location: '.$_SERVER['PHP_SELF']."?pag=paciente&acao=listar");
+                print('<script> location.replace("?pag=paciente&acao=listar"); </script>');
                 View::includeFooter();
             }
             else if($acao=="trocasenha")

@@ -23,7 +23,7 @@
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                    <a onClick="history.go(-1)" class='btn btn-primary pull-left'>Voltar</a>
+                    <a onClick="history.go(-1)" class='btn btn-default pull-left'>Voltar</a>
                     <input type="submit" name="submit" value="Dia" class='btn btn-success pull-right'>
                     <input type="submit" name="submit" value="Semana" class='btn btn-success pull-right'>
                     <input type="submit" name="submit" value="Mes" class='btn btn-success pull-right'>    

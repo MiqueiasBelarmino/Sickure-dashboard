@@ -146,9 +146,9 @@ class controleFuncionario extends controleGeral {
 										?>
                                         <td>
                                             
-                                        <a href="?pag=funcionario&acao=editar&id=<?php print($func['funcionario_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=funcionario&acao=visualizar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></a>
-                                        <a href="?pag=funcionario&acao=desativar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
+                                        <a href="?pag=funcionario&acao=editar&id=<?php print($func['funcionario_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i> Editar</a>
+                                        <a href="?pag=funcionario&acao=visualizar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"> Visualizar</i></a>
+                                        <a href="?pag=funcionario&acao=desativar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
                                             
                                         </td>
                                     </tr>
@@ -219,7 +219,7 @@ class controleFuncionario extends controleGeral {
                 View::includeHeader("Funcionário");
                 $funcDB = new Funcionario();
                 $res = $funcDB->setActive($_GET['id'],0);
-                header('Location: '.$_SERVER['PHP_SELF']."?pag=funcionario&acao=listar");
+                print('<script> location.replace("?pag=funcionario&acao=listar"); </script>');
                 View::includeFooter();
             }
             else if($acao=="ativar")
@@ -227,7 +227,7 @@ class controleFuncionario extends controleGeral {
                 View::includeHeader("Funcionário");
                 $funcDB = new Funcionario();
                 $res = $funcDB->setActive($_GET['id'],1);
-                header('Location: '.$_SERVER['PHP_SELF']."?pag=funcionario&acao=listar");
+                print('<script> location.replace("?pag=funcionario&acao=listar"); </script>');
                 View::includeFooter();
             }
             else if($acao=="trocasenha")

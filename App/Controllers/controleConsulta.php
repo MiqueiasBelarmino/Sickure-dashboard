@@ -103,7 +103,7 @@ class controleConsulta extends controleGeral {
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="?pag=consulta&acao=visualizarpaciente&paciente_id=<?php print($func['paciente_id']) ?>" class="btn btn-flat btn-primary"><i class="fa fa-arrow-right"></i></a>
+                                        <a href="?pag=consulta&acao=visualizarpaciente&paciente_id=<?php print($func['paciente_id']) ?>" class="btn btn-flat btn-primary"><i class="fa fa-arrow-right"></i> Selecionar</a>
                                     </td>
                                 </tr>
                                 <?php

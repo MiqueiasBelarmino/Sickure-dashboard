@@ -101,7 +101,7 @@ class controleVacinacao extends controleGeral {
             {
                 View::includeHeader();
                 ?>
-                <div class="box box-primary">
+                <div class="box box-default">
                 <div class="box-header">
                     <h3 class="box-title">Lista de Pacientes</h3>
                 </div>
@@ -138,7 +138,7 @@ class controleVacinacao extends controleGeral {
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="?pag=vacinacao&acao=visualizarpaciente&paciente_id=<?php print($func['paciente_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-arrow-right"></i></a>
+                                        <a href="?pag=vacinacao&acao=visualizarpaciente&paciente_id=<?php print($func['paciente_id']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-arrow-right"></i> Selecionar</a>
                                     </td>
                                 </tr>
                                 <?php
@@ -194,19 +194,19 @@ class controleVacinacao extends controleGeral {
                     </h3>
                     <div class="box-tools">
                     <!-- This will cause the box to be removed when clicked -->
-                    <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                    <button class="btn btn-flat btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
                     <!-- This will cause the box to collapse when clicked -->
-                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-flat btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
                     </div>
                 </div>
                 <div class="box-body">
-                    <a href="?pag=vacinacao&acao=vacinar&paciente_id=<?php print($_GET['paciente_id'])?>" class="btn btn-info">Aplicar vacina</a>
-                    <a href="?pag=vacinacao&acao=agendarvacinar&paciente_id=<?php print($_GET['paciente_id'])?>" class="btn btn-info">Agendar vacina</a>
-                    <a href="?pag=vacinacao&acao=registrarvacinar&paciente_id=<?php print($_GET['paciente_id'])?>" class="btn btn-info">Registrar vacina</a>
+                    <a href="?pag=vacinacao&acao=vacinar&paciente_id=<?php print($_GET['paciente_id'])?>" class="btn btn-flat btn-info">Aplicar vacina</a>
+                    <a href="?pag=vacinacao&acao=agendarvacinar&paciente_id=<?php print($_GET['paciente_id'])?>" class="btn btn-flat btn-info">Agendar vacina</a>
+                    <a href="?pag=vacinacao&acao=registrarvacinar&paciente_id=<?php print($_GET['paciente_id'])?>" class="btn btn-flat btn-info">Registrar vacina</a>
                 </div>
                 </div>
 
-                <div class="box box-info">
+                <div class="box box-default">
                 <div class="box-header">
                     <h3 class="box-title">Agendamentos</h3>
                 </div>
@@ -235,8 +235,8 @@ class controleVacinacao extends controleGeral {
                                 print("<td>".$vacinada['vacina_nome']."</td>");
                                 print("<td><table><tr>");
                                 //print("<td><a href=''>Vacinar</a></td>"); http://localhost/cesar/?pag=vacinacao&acao=vacinar&vacina_id=1&paciente_id=1
-                                print("<td><a href='?pag=vacinacao&acao=vacinar&vacina_id=".$vacinada['vacina_id']."&paciente_id=".$vacinada['paciente_id']."&cvac_data=".$vacinada['cvac_data']."'>Vacinar</a></td>");
-                                print("<td><a href='?pag=vacinacao&acao=excluir&vacina_id=".$vacinada['vacina_id']."&paciente_id=".$vacinada['paciente_id']."&cvac_data=".$vacinada['cvac_data']."'>Cancelar</a></td>");
+                                print("<td><a href='?pag=vacinacao&acao=vacinar&vacina_id=".$vacinada['vacina_id']."&paciente_id=".$vacinada['paciente_id']."&cvac_data=".$vacinada['cvac_data']."'class='btn btn-flat btn-primary'><i class='fa fa-eyedropper'></i>  Vacinar</a>");
+                                print(" <a href='?pag=vacinacao&acao=excluir&vacina_id=".$vacinada['vacina_id']."&paciente_id=".$vacinada['paciente_id']."&cvac_data=".$vacinada['cvac_data']."'class='btn btn-flat btn-danger'><i class='fa fa-close'></i> Cancelar</a></td>");
                                 print("</tr></table>");
                                 print("</tr>");
                             }
@@ -256,7 +256,7 @@ class controleVacinacao extends controleGeral {
                 </div>
                 </table>
 
-                <div class="box box-info">
+                <div class="box box-default">
                 <div class="box-header">
                     <h3 class="box-title">Carteira de Vacinação</h3>
                 </div>
@@ -293,7 +293,7 @@ class controleVacinacao extends controleGeral {
                                 else if($vacinada['cvac_tipo']==3) print("<td>Preenchimento</td>");
                                 else print("<td>???</td>");
                                 print("<td>".$vacinada['funcionario_nome']."</td>");
-                                print("<td><a href='?pag=vacinacao&acao=excluir&vacina_id=".$vacinada['vacina_id']."&paciente_id=".$vacinada['paciente_id']."&cvac_data=".$vacinada['cvac_data']."'>Excluir</a></td>");
+                                print("<td><a href='?pag=vacinacao&acao=excluir&vacina_id=".$vacinada['vacina_id']."&paciente_id=".$vacinada['paciente_id']."&cvac_data=".$vacinada['cvac_data']."'class='btn btn-flat btn-danger'><i class='fa fa-trash'></i> Excluir</a></td>");
                                 print("</tr>");
                             }
                         }
@@ -323,7 +323,7 @@ class controleVacinacao extends controleGeral {
                 if(!isset($_GET['vacina_id']))
                 {
                     ?>
-                    <div class="box box-info">
+                    <div class="box box-default">
                     <div class="box-header">
                         <h3 class="box-title">Vacinas</h3>
                     </div>
@@ -347,7 +347,7 @@ class controleVacinacao extends controleGeral {
                                 ?>
                                 <tr>
                                     <td><a href="?pag=vacinacao&acao=<?php print($acao); ?>&vacina_id=<?php print($func['vacina_id'].'&paciente_id='.$_GET['paciente_id']) ?>"><?php print($func['vacina_nome']) ?></a></td>
-                                    <td><a href="?pag=vacinacao&acao=<?php print($acao); ?>&vacina_id=<?php print($func['vacina_id'].'&paciente_id='.$_GET['paciente_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-arrow-right"></i></a></td>
+                                    <td><a href="?pag=vacinacao&acao=<?php print($acao); ?>&vacina_id=<?php print($func['vacina_id'].'&paciente_id='.$_GET['paciente_id']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-arrow-right"></i> Selecionar</a></td>
                                 </tr>
                                 <?php
                             }
@@ -376,7 +376,7 @@ class controleVacinacao extends controleGeral {
                     $loteVaDB = new LoteVacina();
                     $res = $loteVaDB->searchPorVacinas($_GET['vacina_id']);
                     ?>
-                    <div class="box box-info">
+                    <div class="box box-default">
                     <div class="box-header">
                         <h3 class="box-title">Consultas</h3>
                     </div>
@@ -429,13 +429,13 @@ class controleVacinacao extends controleGeral {
                                     if(isset($_GET['cvac_data']))
                                     {
                                         ?> 
-                                        <td><a href="?pag=vacinacao&acao=<?php print($acao); ?>&vacina_id=<?php print($_GET['vacina_id'].'&paciente_id='.$_GET['paciente_id']."&vlote_codigo=".$vaclot['vlote_codigo']."&cvac_data=".$_GET['cvac_data']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-arrow-right"></i></a></td>
+                                        <td><a href="?pag=vacinacao&acao=<?php print($acao); ?>&vacina_id=<?php print($_GET['vacina_id'].'&paciente_id='.$_GET['paciente_id']."&vlote_codigo=".$vaclot['vlote_codigo']."&cvac_data=".$_GET['cvac_data']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-arrow-right"></i> Selecionar</a></td>
                                         <?php
                                     }
                                     else
                                     {
                                         ?> 
-                                        <td><a href="?pag=vacinacao&acao=<?php print($acao); ?>&vacina_id=<?php print($_GET['vacina_id'].'&paciente_id='.$_GET['paciente_id']."&vlote_codigo=".$vaclot['vlote_codigo']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-arrow-right"></i></a></td>
+                                        <td><a href="?pag=vacinacao&acao=<?php print($acao); ?>&vacina_id=<?php print($_GET['vacina_id'].'&paciente_id='.$_GET['paciente_id']."&vlote_codigo=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-arrow-right"></i> Selecionar</a></td>
                                         <?php
                                     }
                                     ?>
@@ -528,7 +528,7 @@ class controleVacinacao extends controleGeral {
                                 else
                                 {
                                     ?>
-                                        <div class="box box-primary">
+                                        <div class="box box-default">
                                             <div class="box-header with-border">
                                                 <h3 class="box-title">Registrar Vacina</h3>
                                             </div>
@@ -544,8 +544,8 @@ class controleVacinacao extends controleGeral {
                                                 <!-- /.box-body -->
 
                                                 <div class="box-footer">
-                                                <a href="?pag=vacina&acao=listar" class='btn btn-primary pull-left'>Voltar</a>
-                                                <input type="submit" name="submit" value="Confirmar" class='btn btn-primary pull-right'>
+                                                <a href="?pag=vacina&acao=listar" class='btn btn-flat btn-default pull-left'>Voltar</a>
+                                                <input type="submit" name="submit" value="Salvar" class='btn btn-flat btn-primary pull-right'>
                                                 </div>
                                             </form>
                                         </div>

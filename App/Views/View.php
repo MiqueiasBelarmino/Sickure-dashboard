@@ -41,7 +41,7 @@ class View {
                     <td><input type="password" name="atualSenha"><td>
                 </tr>
             </table>
-            <input type="submit" name="submit" value="Confirmar">
+            <input type="submit" name="submit" value="Salvar">
         </form>
         <?php
     }
@@ -165,7 +165,7 @@ class View {
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                    <a href="?pag=funcionario&acao=listar" class='btn btn-flat btn-default  pull-left'>Voltar</a>
+                    <a href="?pag=funcionario&acao=listar" class='btn btn-flat btn-default pull-left'>Voltar</a>
                     <?php
                     
                         if(isset($dados['funcionario_id'])) print("<input type='hidden' name='funcionario_id' value='".$dados['funcionario_id']."'>");
@@ -669,8 +669,8 @@ class View {
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                    <a onClick="history.go(-1)" class='btn btn-flat btn-primary pull-left'>Voltar</a>
-                    <input type="submit" name="submit" value="Confirmar" class='btn btn-flat btn-success pull-right'>
+                    <a onClick="history.go(-1)" class='btn btn-flat btn-default pull-left'>Voltar</a>
+                    <input type="submit" name="submit" value="Salvar" class='btn btn-flat btn-success pull-right'>
                     </form>
                 </div>
         </div>

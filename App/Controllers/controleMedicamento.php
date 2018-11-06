@@ -153,16 +153,16 @@ class controleMedicamento extends controleGeral
                                 <tr>
                                     <td><a href="?pag=medicamento&acao=visualizar&id=<?php print($func['medicamento_id']) ?>" style="color: green !important;"><?php print($func['medicamento_nome']) ?></a></td>
                                     <td>
-                                        <a href="?pag=medicamento&acao=editar&id=<?php print($func['medicamento_id']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=medicamento&acao=visualizar&id=<?php print($func['medicamento_id']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"></i></a>
+                                        <a href="?pag=medicamento&acao=editar&id=<?php print($func['medicamento_id']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i> Editar</a>
+                                        <a href="?pag=medicamento&acao=visualizar&id=<?php print($func['medicamento_id']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"> Visualizar</i></a>
                                         <?php
                                             if($func['medicamento_ativo']==1):
                                         ?>
-                                        <a href="?pag=medicamento&acao=desativar&id=<?php print($func['medicamento_id']); ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
+                                        <a href="?pag=medicamento&acao=desativar&id=<?php print($func['medicamento_id']); ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
                                         <?php
                                             else:
                                         ?>
-                                            <a href="?pag=medicamento&acao=ativar&id=<?php print($func['medicamento_id']); ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"></i></a>
+                                            <a href="?pag=medicamento&acao=ativar&id=<?php print($func['medicamento_id']); ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
                                         <?php
                                             endif;
                                         ?>        
@@ -258,17 +258,17 @@ class controleMedicamento extends controleGeral
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="?pag=medicamento&acao=editarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=medicamento&acao=visualizarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"></i></a>
+                                        <a href="?pag=medicamento&acao=editarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i> Editar</a>
+                                        <a href="?pag=medicamento&acao=visualizarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"> Visualizar</i></a>
                                         
                                         <?php
                                             if($vaclot['mlote_ativo']==1):
                                         ?>
-                                        <a href="?pag=medicamento&acao=desativarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
+                                        <a href="?pag=medicamento&acao=desativarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
                                         <?php
                                             else:
                                         ?>
-                                            <a href="?pag=medicamento&acao=ativarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"></i></a>
+                                            <a href="?pag=medicamento&acao=ativarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
                                         <?php
                                             endif;
                                         ?>                        
@@ -338,7 +338,7 @@ class controleMedicamento extends controleGeral
                 View::includeHeader();
                 $funcDB = new Medicamento();
                 $res = $funcDB->setActive($_GET['id'],0);
-                header('Location: '.$_SERVER['PHP_SELF']."?pag=medicamento&acao=listar");
+                print('<script> location.replace("?pag=medicamento&acao=listar"); </script>');
                 View::includeFooter();
             }
             
@@ -347,7 +347,7 @@ class controleMedicamento extends controleGeral
                 View::includeHeader();
                 $useDB = new LoteMedicamento();
                 $res = $useDB->setActiveLote($_GET['id'],$_GET['cod'],0);
-                header('Location: '.$_SERVER['PHP_SELF']."?pag=medicamento&acao=visualizar&id=".$_GET['id']);
+                print("<script> location.replace('?pag=medicamento&acao=visualizar&id=".$_GET['id']."'); </script>");
                 View::includeFooter();
             }
             
@@ -356,7 +356,7 @@ class controleMedicamento extends controleGeral
                 View::includeHeader();
                 $funcDB = new Medicamento();
                 $res = $funcDB->setActive($_GET['id'],1);
-                header('Location: '.$_SERVER['PHP_SELF']."?pag=medicamento&acao=listar");
+                print('<script> location.replace("?pag=medicamento&acao=listar"); </script>');
                 View::includeFooter();
             }
             else if($acao=="editar")
