@@ -31,9 +31,9 @@ class controleMedicamento extends controleGeral
                 View::includeHeader();
                 if($res==-1)
                 {
-                    print("Falha.");
+                    print("<script>alert('Falha');history.go(-2);</script>");
                 }
-                else print("Inserido.");
+                else  print("<script>history.go(-2);</script>");
                 View::includeFooter();
             }
             else if($acao=="alterar")
@@ -81,9 +81,9 @@ class controleMedicamento extends controleGeral
                 View::includeHeader();
                 if($res==-1)
                 {
-                    print("Falha.");
+                     print("<script>alert('Falha');history.go(-2);</script>");
                 }
-                else print("Inserido.");
+                    else  print("<script>history.go(-2);</script>");
                 View::includeFooter();
             }
             else if($acao=="alterarlote")
