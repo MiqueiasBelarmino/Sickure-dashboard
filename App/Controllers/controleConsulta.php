@@ -248,7 +248,6 @@ class controleConsulta extends controleGeral {
                 else
                 {
                     View::consultaAgendarForm($_GET['paciente_id']);
-                    print("Hello!");
                 }
                 
                 View::includeFooter();

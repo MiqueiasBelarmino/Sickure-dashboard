@@ -90,22 +90,20 @@ if(isset($_SESSION['usuario_logado'])):
                 print('<li><a href="?pag=consulta&acao=listarpacientes"><i class="fa fa-list-alt"></i> <span>Consulta</span></a></li>');
             }
             print('<li><a href="?pag=vacinacao&acao=listarpacientes"><i class="fa fa-table"></i> <span>Vacinação</span></a></li>');
-            if($perm_administrador>0)
-              print('<li><a href="?pag=relatorios&acao=relatorios"><i class="fa fa-file-pdf-o"></i> <span>Relátorios</span></a></li>');
-          
-    ?>  
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
+            if($perm_administrador>0):
+          ?>  
+          <li class="treeview">
+            <a href="#"><i class="fa fa-file-pdf-o"></i> <span>Relátorios</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="?pag=relatorios&acao=relatoriovacinacao">Vacinação</a></li>
+              <li><a href="?pag=relatorios&acao=relatorioestoquemed">Estoque de Medicamento</a></li>
+            </ul>
+          </li>
+            <?php endif; ?>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

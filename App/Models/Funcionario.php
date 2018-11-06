@@ -51,6 +51,13 @@ class Funcionario extends Generic
         else return 0;
     }
 
+    function searchMedicos($nome = "", $ativo = 1)
+    {
+        $mypdo = new MyPDO();
+        $stmt = $mypdo->run("SELECT * FROM ".$this->tablename." NATURAL JOIN Medico WHERE ".$this->ativokey."=? AND ".$this->searchkey." LIKE ?",[$ativo,"%".$nome."%"])->fetchAll();
+        return $stmt;
+    }
+
     function logar($cpf, $senha)
     {
         $mypdo = new MyPDO();
