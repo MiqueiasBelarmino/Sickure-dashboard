@@ -172,7 +172,7 @@ class controleVacinacao extends controleGeral {
                         {
                             $funcDBVacinas = new CarteiraVacinacao();
                             $vacinas = $funcDBVacinas->deleteCarteira($_GET['paciente_id'], $_GET['vacina_id'], $_GET['cvac_data']);
-                            Header('location: ' . $_SERVER['PHP_SELF']. "?pag=vacinacao&acao=visualizarpaciente&paciente_id=".$_GET['paciente_id']);
+                            print("<script> location.replace('?pag=vacinacao&acao=visualizarpaciente&paciente_id=".$_GET['paciente_id']."'); </script>");
                         }
                     }
                 }
@@ -492,12 +492,12 @@ class controleVacinacao extends controleGeral {
                                     if($res==-1)
                                     {
                                         //print("Falha.");
-                                        Header('location: ' . $_SERVER['PHP_SELF']. "?pag=vacinacao&acao=visualizarpaciente&paciente_id=".$_GET['paciente_id']);
+                                        print("<script> location.replace('?pag=vacinacao&acao=visualizarpaciente&paciente_id=".$_GET['paciente_id']."'); </script>");
                                     }
                                     else
                                     {
                                         //print("Inserido.");
-                                        Header('location: ' . $_SERVER['PHP_SELF']. "?pag=vacinacao&acao=visualizarpaciente&paciente_id=".$_GET['paciente_id']);
+                                        print("<script> location.replace('?pag=vacinacao&acao=visualizarpaciente&paciente_id=".$_GET['paciente_id']."'); </script>");
                                     }
                                 }
                             }

@@ -148,8 +148,17 @@ class controleFuncionario extends controleGeral {
                                             
                                         <a href="?pag=funcionario&acao=editar&id=<?php print($func['funcionario_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i> Editar</a>
                                         <a href="?pag=funcionario&acao=visualizar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"> Visualizar</i></a>
-                                        <a href="?pag=funcionario&acao=desativar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
-                                            
+                                         <?php
+                                            if($func['funcionario_ativo']==1):
+                                        ?>
+                                            <a href="?pag=funcionario&acao=desativar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
+                                        <?php
+                                            else:
+                                        ?>
+                                            <a href="?pag=funcionario&acao=ativar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"> Ativar</i></a>
+                                        <?php
+                                            endif;
+                                        ?>       
                                         </td>
                                     </tr>
                                     <?php

@@ -158,7 +158,17 @@ class controleVacina extends controleGeral
                                     <td>
                                         <a href="?pag=vacina&acao=editar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i> Editar</a>
                                         <a href="?pag=vacina&acao=visualizar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"> Visualizar</i></a>
-                                        <a href="?pag=vacina&acao=desativar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
+                                        <?php
+                                            if($vaclot['vacina_ativo']==1):
+                                        ?>
+                                            <a href="?pag=vacina&acao=desativar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat btn-danger btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
+                                        <?php
+                                            else:
+                                        ?>
+                                            <a href="?pag=vacina&acao=ativar&id=<?php print($func['vacina_id']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"> Ativar</i></a>
+                                        <?php
+                                            endif;
+                                        ?> 
                                     </td>
                                 </tr>
                                 <?php
@@ -259,7 +269,7 @@ class controleVacina extends controleGeral
                                         <?php
                                             else:
                                         ?>
-                                            <a href="?pag=vacina&acao=ativarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
+                                            <a href="?pag=vacina&acao=ativarlote&id=<?php print($vaclot['vacina_id']."&cod=".$vaclot['vlote_codigo']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"> Ativar</i></a>
                                         <?php
                                             endif;
                                         ?>                        
@@ -318,7 +328,7 @@ class controleVacina extends controleGeral
                 View::includeHeader();
                 $funcDB = new Vacina();
                 $res = $funcDB->setActive($_GET['id'],0);
-                header('Location: '.$_SERVER['PHP_SELF']."?pag=vacina&acao=listar");
+                print('<script> location.replace("?pag=vacina&acao=listar"); </script>');
                 View::includeFooter();
             }
             
@@ -327,7 +337,7 @@ class controleVacina extends controleGeral
                 View::includeHeader();
                 $useDB = new LoteVacina();
                 $res = $useDB->setActiveLote($_GET['id'],$_GET['cod'],0);
-                header('Location: '.$_SERVER['PHP_SELF']."?pag=vacina&acao=visualizar&id=".$_GET['id']);
+                print("<script> location.replace('?pag=vacina&acao=visualizar&id=".$_GET['id']."'); </script>");
                 View::includeFooter();
             }
             else if($acao=="ativarlote")
@@ -335,7 +345,7 @@ class controleVacina extends controleGeral
                 View::includeHeader();
                 $useDB = new LoteVacina();
                 $res = $useDB->setActiveLote($_GET['id'],$_GET['cod'],1);
-                header('Location: '.$_SERVER['PHP_SELF']."?pag=vacina&acao=visualizar&id=".$_GET['id']);
+                print("<script> location.replace('?pag=vacina&acao=visualizar&id=".$_GET['id']."'); </script>");
                 View::includeFooter();
             }
             
@@ -344,7 +354,7 @@ class controleVacina extends controleGeral
                 View::includeHeader();
                 $funcDB = new Vacina();
                 $res = $funcDB->setActive($_GET['id'],1);
-                header('Location: '.$_SERVER['PHP_SELF']."?pag=vacina&acao=listar");
+                print('<script> location.replace("?pag=vacina&acao=listar"); </script>');
                 View::includeFooter();
             }
             else if($acao=="editar")

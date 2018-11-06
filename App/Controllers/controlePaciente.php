@@ -115,7 +115,17 @@ class controlePaciente extends controleGeral {
                                     <td>
                                         <a href="?pag=paciente&acao=editar&id=<?php print($func['paciente_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i> Editar</a>
                                         <a href="?pag=paciente&acao=visualizar&id=<?php print($func['paciente_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"> Visualizar</i></a>
+                                        <?php
+                                            if($vaclot['paciente_ativo']==1):
+                                        ?>
                                         <a href="?pag=paciente&acao=desativar&id=<?php print($func['paciente_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
+                                        <?php
+                                            else:
+                                        ?>
+                                            <a href="?pag=paciente&acao=ativar&id=<?php print($func['paciente_id']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"> Ativar</i></a>
+                                        <?php
+                                            endif;
+                                        ?> 
                                     </td>
                                 </tr>
                                 <?php

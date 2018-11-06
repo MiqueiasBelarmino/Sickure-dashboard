@@ -162,7 +162,7 @@ class controleMedicamento extends controleGeral
                                         <?php
                                             else:
                                         ?>
-                                            <a href="?pag=medicamento&acao=ativar&id=<?php print($func['medicamento_id']); ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
+                                            <a href="?pag=medicamento&acao=ativar&id=<?php print($func['medicamento_id']); ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"> Ativar</i></a>
                                         <?php
                                             endif;
                                         ?>        
@@ -268,7 +268,7 @@ class controleMedicamento extends controleGeral
                                         <?php
                                             else:
                                         ?>
-                                            <a href="?pag=medicamento&acao=ativarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"> Inativar</i></a>
+                                            <a href="?pag=medicamento&acao=ativarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat btn-success btn-flat"><i class="fa fa-power-off"> Ativar</i></a>
                                         <?php
                                             endif;
                                         ?>                        
