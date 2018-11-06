@@ -95,18 +95,21 @@ class controleFuncionario extends controleGeral {
             {
                 View::includeHeader("Funcionário");
                 ?>
-               
-                <div class="box box-primary">
-                
+               <div class="box no-print bg-navy">
+                    <div class="box-body">
+                    <a href="?pag=funcionario&acao=novo" class="btn btn-success btn-flat pull-left">Adicionar Funcionário</a>
+                    <form action='?pag=funcionario&acao=listar' method='post' class="pull-right">
+                        <input type="hidden" name='busca' <?php if(isset($_POST['busca'])) print("value='".$_POST['busca']."'"); ?>>
+                        <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo 
+                        <input type='radio' name='ativo' value='0' <?php if(isset($_POST['ativo']) && $_POST['ativo']==0 ) print("checked"); ?> style="margin-left: 10px"> Inativo
+                        <input type="submit" name='buscar' value='Filtrar' class="btn btn-flat btn-default" style="margin-left:10px">
+                    </form>
+                    </div>
+                </div>
+
+                <div class="box box-default">
                     <div class="box-header">
                         <h3 class="box-title">Lista de Funcionários</h3>
-                        <br>
-                        <a href="?pag=funcionario&acao=novo" class="btn btn-info pull-left">Adicionar Funcionário</a>
-                        <form action='?pag=funcionario&acao=listar' method='post' class="pull-right">
-                            <input type="hidden" name='busca' <?php if(isset($_POST['busca'])) print("value='".$_POST['busca']."'"); ?>>
-                            <input type='radio' name='ativo' value='1' <?php if(!isset($_POST['ativo']) || $_POST['ativo']==1 ) print("checked"); ?>> Ativo <input type='radio' name='ativo' value='0' <?php if(isset($_POST['ativo']) && $_POST['ativo']==0 ) print("checked"); ?>> Inativo
-                            <input type="submit" name='buscar' value='Filtrar' class="btn btn-info">
-                        </form>
                     </div>
                         <!-- /.-header -->
                         <div class="box-body">
@@ -119,7 +122,7 @@ class controleFuncionario extends controleGeral {
                             <th>Atendente</th>
                             <th>Médico</th>
                             <th>Administrador</th>  
-                            <th>Ação</th>  
+                            <th>Ações</th>  
                             </tr>
                             </thead>
                             <tbody>
@@ -139,7 +142,7 @@ class controleFuncionario extends controleGeral {
                                         <td>
                                             
                                         <a href="?pag=funcionario&acao=editar&id=<?php print($func['funcionario_id']) ?>" class="btn bg-orange btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <a href="?pag=funcionario&acao=desativar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-trash"></i></a>
+                                        <a href="?pag=funcionario&acao=desativar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-danger btn-flat"><i class="fa fa-power-off"></i></a>
                                         <a href="?pag=funcionario&acao=visualizar&id=<?php print($func['funcionario_id']) ?>" class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></a>
                                             
                                         </td>
@@ -155,7 +158,7 @@ class controleFuncionario extends controleGeral {
                             <th>Atendente</th>
                             <th>Médico</th>
                             <th>Administrador</th>
-                            <th>Ação</th>
+                            <th>Ações</th>
                             </tr>
                             </tfoot>
                         </table>

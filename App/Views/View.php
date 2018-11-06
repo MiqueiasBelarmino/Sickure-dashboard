@@ -70,6 +70,7 @@ class View {
         $action = 'inserir';
         if(isset($dados)) $action = 'alterar'
         ?>
+
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Adicionar Funcionário</h3>
@@ -156,16 +157,16 @@ class View {
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                    <a href="?pag=funcionario&acao=listar" class='btn btn-primary pull-left'>Voltar</a>
+                    <a href="?pag=funcionario&acao=listar" class='btn btn-default btn-flat pull-left'>Voltar</a>
                     <?php
                     
                         if(isset($dados['funcionario_id'])) print("<input type='hidden' name='funcionario_id' value='".$dados['funcionario_id']."'>");
-                        if($editable) print("<input type='submit' name='submit' value='Confirmar' class='btn btn-success pull-right'>");
+                        if($editable) print("<input type='submit' name='submit' value='Salvar' class='btn btn-success pull-right btn-flat'>");
                         if(!$editable){
                         ?>
                         <div id="editar">
-                            <a href='?pag=funcionario&acao=trocasenha&id=<?php print($_GET['id'])?>' class='btn btn-warning pull-right' style="margin-left:5px">Alterar Senha</a>
-                            <a href='?pag=funcionario&acao=resetarsenha&id=<?php print($_GET['id'])?>' class='btn btn-warning pull-right'>Resetar Senha</a>
+                            <a href='?pag=funcionario&acao=trocasenha&id=<?php print($_GET['id'])?>' class='btn btn-default pull-right btn-flat' style="margin-left:5px">Alterar Senha</a>
+                            <a href='?pag=funcionario&acao=resetarsenha&id=<?php print($_GET['id'])?>' class='btn btn-default pull-right btn-flat'>Resetar Senha</a>
                         </div>
                         <?php
                             }
@@ -204,7 +205,7 @@ class View {
         $action = 'inserir';
         if(isset($dados)) $action = 'alterar'
         ?>
-            <div class="box box-primary">
+            <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Adicionar Paciente</h3>
                 </div>
@@ -291,16 +292,16 @@ class View {
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                    <a href="?pag=paciente&acao=listar" class='btn btn-primary pull-left'>Voltar</a>
+                    <a href="?pag=paciente&acao=listar" class='btn btn-default btn-flat pull-left'>Voltar</a>
                     <?php
                     
                         if(isset($dados['paciente_id'])) print("<input type='hidden' name='paciente_id' value='".$dados['paciente_id']."'>");
-                        if($editable) print("<input type='submit' name='submit' value='Confirmar' class='btn btn-success pull-right'>");
+                        if($editable) print("<input type='submit' name='submit' value='Salvar' class='btn btn-success pull-right btn-flat'>");
                         if(!$editable){
                         ?>
                         <div id="editar">
-                            <a href='?pag=paciente&acao=trocasenha&id=<?php print($_GET['id'])?>' class='btn btn-warning pull-right' style="margin-left:5px">Alterar Senha</a>
-                            <a href='?pag=paciente&acao=resetarsenha&id=<?php print($_GET['id'])?>' class='btn btn-warning pull-right'>Resetar Senha</a>
+                            <a href='?pag=paciente&acao=trocasenha&id=<?php print($_GET['id'])?>' class='btn btn-default pull-right btn-flat' style="margin-left:5px">Alterar Senha</a>
+                            <a href='?pag=paciente&acao=resetarsenha&id=<?php print($_GET['id'])?>' class='btn btn-default pull-right btn-flat'>Resetar Senha</a>
                         </div>
                         <?php
                             }
@@ -687,16 +688,22 @@ class View {
                 
                 
                 ?>
+                 <div class="invoice row no-print container-fluid bg-navy" style="padding: 10px">
+                        <div class="col-xs-12">
+                        <a href="#"  class="btn btn-default btn-flat pull-left" onclick="history.go(-1)"><i class="fa fa-step-backward"></i> Voltar</a>
+                        <a href="#"  class="btn btn-default btn-flat pull-right" onclick="window.print()"><i class="fa fa-print"></i> Imprimir</a>
+                        </div>
+                    </div>
                 <section class="invoice">
                 <!-- title row -->
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h2 class="page-header">
-                        <i class="fa fa-heartbeat"></i><strong> SicK</strong>ure, Vacinas aplicadas.
-                        <small class="pull-right" style="margin-top:-5px">Periodo: <?php print("<b>".$inicio."</b> até <b>".$fim."</b>"); ?><br>Gerado em: <?php print("<b>".date('Y-m-d H:i:s')."</b>"); ?></small>
-                        </h2>
-                    </div>
-                    <!-- /.col -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h2 class="page-header">
+                            <i class="fa fa-heartbeat"></i><strong> SicK</strong>ure, Vacinas aplicadas.
+                            <small class="pull-right" style="margin-top:-5px">Periodo: <?php print("<b>".$inicio."</b> até <b>".$fim."</b>"); ?><br>Gerado em: <?php print("<b>".date('Y-m-d H:i:s')."</b>"); ?></small>
+                            </h2>
+                        </div>
+                        <!-- /.col -->
                     </div>
                     <!-- info row -->
                     <div class="row invoice-info">
@@ -739,7 +746,7 @@ class View {
                     </div>
                     <!-- /.row -->
                     <div class="row">
-                        <div class="col-xs-12">
+                        <div class="col-xs-12" >
                             <p class="pull-right" style="margin-right: 8px; text-transform: uppercase">
                              <strong>
                                 <?php  print("Total de vacinas: ".$total); ?>
@@ -748,12 +755,7 @@ class View {
                         </div>
                     </div>
                     
-                    <div class="container row no-print">
-                        <div class="col-xs-12" style="border-top:1px solid #eee">
-                        <br>
-                        <a href="#" target="_blank" class="btn btn-default" onclick="print();"><i class="fa fa-print"></i> Print</a>
-                        </div>
-                    </div>
+                   
                 </section>
                 <!-- /.content -->
                 <?php
@@ -793,31 +795,43 @@ class View {
         if($comando!="Buscar")
         {
             ?>
-            <form action="" method="post">
-                <table>
-                    <tr>
-                        <th><label for="datainicio">Inicio</label></th>
-                        <td><input type="datetime-local" name="datainicio" <?php if(isset($tempoInicial)) print("value='".$tempoInicial."'") ?>></td>
-                    </tr>
-                    <tr>
-                        <th><label for="datafim">Fim</label></th>
-                        <td><input type="datetime-local" name="datafim" <?php if(isset($tempoFinal)) print("value='".$tempoFinal."'") ?>></td>
-                    </tr>
-                    <tr>
-                        <th>-</th>
-                        <td><input type="submit" name="submit" value="Buscar">
-                    </tr>
-                </table>
-                <br>
-                <table>
-                    <tr>
-                        <td><input type="submit" name="submit" value="Dia"></td>
-                        <td><input type="submit" name="submit" value="Semana"></td>
-                        <td><input type="submit" name="submit" value="Mes"></td>
-                    </tr>
-                </table>
-            </form>
-            <?php
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Relátorio vacinação</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form action="" method="post" role="form">
+                    <div class="box-body row">
+                        <div class="form-group col-xs-6">
+                            <label for="datainicio">Data Inicio</label>
+                            <input type="datetime-local" class="form-control" name="datainicio" id="datainicio"  <?php if(isset($tempoInicial)) print("value='".$tempoInicial."'") ?>>
+                        </div>
+    
+                        <div class="form-group col-xs-6">
+                            <label for="datafim">Data Fim</label>
+                            <input type="datetime-local" class="form-control" name="datafim" id="datafim"  <?php if(isset($tempoFinal)) print("value='".$tempoFinal."'") ?>>
+                        </div>
+                        <div class="form-group col-xs-6">
+                        <div class="btn-group pull-left">
+                            <input type="submit" name="submit" value="Dia" class='btn bg-navy btn-flat'>
+                            <input type="submit" name="submit" value="Semana" class='btn bg-navy btn-flat'>
+                            <input type="submit" name="submit" value="Mes" class='btn bg-navy btn-flat'>
+                        </div>   
+                        
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+    
+                    <div class="box-footer">
+                        <a onClick="history.go(-1)" class='btn btn-default pull-left btn-flat'>Voltar</a>
+                        <input type="submit" name="submit" value="Buscar"  class='btn btn-success pull-right btn-flat'>
+              
+                    </form>
+                    </div>
+            </div>
+            <!-- /.box -->
+        <?php   
         }
     }
     

@@ -1,22 +1,34 @@
 ?>
-    <div class="box box-default  box-solid" data-widget="box-widget">
-    <div class="box-header">
-        <h3 class="box-title">
-            <?php
-                $funcDB = new Paciente();
-                $res = $funcDB->select($_GET['paciente_id']);
-                print("Paciente: " . $res['paciente_nome']);
-            ?>
-        </h3>
-        <div class="box-tools">
-        <!-- This will cause the box to be removed when clicked -->
-        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-        <!-- This will cause the box to collapse when clicked -->
-        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Adicionar Lote</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form action="" method="post" role="form">
+                <div class="box-body row">
+                    <div class="form-group col-xs-6">
+                        <label for="datainicio">Data Inicio</label>
+                        <input type="datetime-local" class="form-control" name="datainicio" id="datainicio"  <?php if(isset($tempoInicial)) print("value='".$tempoInicial."'") ?> required>
+                    </div>
+
+                    <div class="form-group col-xs-6">
+                        <label for="datafim">Data< Fim</label>
+                        <input type="datetime-local" class="form-control" name="datafim" id="datafim"  <?php if(isset($tempoFinal)) print("value='".$tempoFinal."'") ?> required>
+                    </div>
+                    <div class="form-group col-xs-6">
+                    <input type="submit" name="submit" value="Buscar">
+                    </div>
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                    <a onClick="history.go(-1)" class='btn btn-primary pull-left'>Voltar</a>
+                    <input type="submit" name="submit" value="Dia" class='btn btn-success pull-right'>
+                    <input type="submit" name="submit" value="Semana" class='btn btn-success pull-right'>
+                    <input type="submit" name="submit" value="Mes" class='btn btn-success pull-right'>    
+                </form>
+                </div>
         </div>
-    </div>
-    <div class="box-body">
-        <a href="?pag=consulta&acao=agendarconsultar&paciente_id=<?php print($_GET['paciente_id'])?>" class="btn btn-info">Agendar consulta</a>
-    </div>
-    </div>
-<?php
+        <!-- /.box -->
+    <?php

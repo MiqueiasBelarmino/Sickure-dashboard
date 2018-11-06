@@ -96,13 +96,11 @@
                     }
                 }
             });
-
+            $('.select2').select2();
             
         });
-         $('.select2').select2();
-        print = function(){
-                window.print();
-            }
+        
+        
 
         $(function() {
             $('#crm').change(function(){
