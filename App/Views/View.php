@@ -94,7 +94,7 @@ class View {
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form action="?pag=funcionario&acao=<?php print($action)?>" method="post" role="form">
+                <form action="?pag=funcionario&acao=<?php print($action)?>" method="post" role="form" onsubmit="return validateForm()" name="myForm">
                     <div class="box-body row">
                         <div class="form-group col-xs-12">
                         <label for="funcionario_nome">Nome completo</label>
@@ -102,11 +102,11 @@ class View {
                         </div>
                         <div class="form-group col-xs-7">
                         <label for="funcionario_cpf">CPF</label>
-                        <input type="text" class="form-control" name="funcionario_cpf" id="funcionario_cpf" placeholder="Informe o cpf" <?php if(isset($dados['funcionario_cpf'])) print('value="'.$dados['funcionario_cpf'].'"'); if(!$editable) print("disabled") ?>>
+                        <input type="text" class="form-control" name="funcionario_cpf" id="funcionario_cpf" placeholder="Informe o cpf" <?php if(isset($dados['funcionario_cpf'])) print('value="'.$dados['funcionario_cpf'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-5">
                             <label for="funcionario_rg">RG</label>
-                            <input type="text" class="form-control" name="funcionario_rg" id="funcionario_rg" placeholder="Informe o RG" <?php if(isset($dados['funcionario_rg'])) print('value="'.$dados['funcionario_rg'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="funcionario_rg" id="funcionario_rg" placeholder="Informe o RG" <?php if(isset($dados['funcionario_rg'])) print('value="'.$dados['funcionario_rg'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <!-- Date dd/mm/yyyy -->
                         <div class="form-group col-xs-9">
@@ -115,7 +115,7 @@ class View {
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="date" class="form-control" name="funcionario_dataNascimento" <?php if(isset($dados['funcionario_dataNascimento'])) print('value="'.$dados['funcionario_dataNascimento'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="date" class="form-control" name="funcionario_dataNascimento" <?php if(isset($dados['funcionario_dataNascimento'])) print('value="'.$dados['funcionario_dataNascimento'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                             <!-- /.input group -->
                         </div>
@@ -124,7 +124,7 @@ class View {
                             <label for="">Genero</label>
                             <div class="row">
                             <div class="col-xs-6">
-                            <input type="radio" name="funcionario_sexo" value="F" class="minimal" <?php if($dados['funcionario_sexo']=="F") print("checked"); else if(!$editable) print("disabled");?>>
+                            <input type="radio" name="funcionario_sexo" value="F" class="minimal" <?php if($dados['funcionario_sexo']=="F") print("checked"); else if(!$editable) print("disabled");?> >
                                 Feminino
                             </div class="col-xs-6">
                                 <input type="radio" name="funcionario_sexo" value="M" class="minimal" <?php if($dados['funcionario_sexo']=="M") print("checked"); else if(!$editable) print("disabled"); ?>>
@@ -133,23 +133,23 @@ class View {
                         </div>
                         <div class="form-group col-xs-8">
                             <label for="funcionario_logradouro">Logradouro</label>
-                            <input type="text" class="form-control" name="funcionario_logradouro" id="funcionario_logradouro" placeholder="Informe o logradouro" <?php if(isset($dados['funcionario_logradouro'])) print('value="'.$dados['funcionario_logradouro'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="funcionario_logradouro" id="funcionario_logradouro" placeholder="Informe o logradouro" <?php if(isset($dados['funcionario_logradouro'])) print('value="'.$dados['funcionario_logradouro'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-4">
                             <label for="funcionario_numero">Numero</label>
-                            <input type="text" class="form-control" name="funcionario_numero" id="funcionario_numero" placeholder="Informe o numero" <?php if(isset($dados['funcionario_numero'])) print('value="'.$dados['funcionario_numero'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="funcionario_numero" id="funcionario_numero" placeholder="Informe o numero" <?php if(isset($dados['funcionario_numero'])) print('value="'.$dados['funcionario_numero'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="funcionario_bairro">Bairro</label>
-                            <input type="text" class="form-control" name="funcionario_bairro" id="funcionario_bairro" placeholder="Informe o bairro" <?php if(isset($dados['funcionario_bairro'])) print('value="'.$dados['funcionario_bairro'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="funcionario_bairro" id="funcionario_bairro" placeholder="Informe o bairro" <?php if(isset($dados['funcionario_bairro'])) print('value="'.$dados['funcionario_bairro'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-6">
                             <label for="funcionario_cidade">Cidade</label>
-                            <input type="text" class="form-control" name="funcionario_cidade" id="funcionario_cidade" placeholder="Informe a cidade" <?php if(isset($dados['funcionario_cidade'])) print('value="'.$dados['funcionario_cidade'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="funcionario_cidade" id="funcionario_cidade" placeholder="Informe a cidade" <?php if(isset($dados['funcionario_cidade'])) print('value="'.$dados['funcionario_cidade'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-6">
                             <label for="funcionario_cep">CEP</label>
-                            <input type="text" class="form-control" name="funcionario_cep" id="funcionario_cep" placeholder="Informe o CEP" <?php if(isset($dados['funcionario_cep'])) print('value="'.$dados['funcionario_cep'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="funcionario_cep" id="funcionario_cep" placeholder="Informe o CEP" <?php if(isset($dados['funcionario_cep'])) print('value="'.$dados['funcionario_cep'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-6">
                             <label for="funcionario_telefone">Telefone</label>
@@ -235,7 +235,7 @@ class View {
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form action="?pag=paciente&acao=<?php print($action)?>" method="post" role="form">
+                <form action="?pag=paciente&acao=<?php print($action)?>" method="post" role="form" onsubmit="return validateForm()" name="myForm">
                     <div class="box-body row">
                         <div class="form-group col-xs-12">
                         <label for="paciente_nome">Nome completo</label>
@@ -243,11 +243,11 @@ class View {
                         </div>
                         <div class="form-group col-xs-7">
                         <label for="paciente_cpf">CPF</label>
-                        <input type="text" class="form-control" name="paciente_cpf" id="paciente_cpf" placeholder="Informe o cpf" <?php if(isset($dados['paciente_cpf'])) print('value="'.$dados['paciente_cpf'].'"'); if(!$editable) print("disabled") ?>>
+                        <input type="text" class="form-control" name="paciente_cpf" id="paciente_cpf" placeholder="Informe o cpf" <?php if(isset($dados['paciente_cpf'])) print('value="'.$dados['paciente_cpf'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-5">
                             <label for="paciente_rg">RG</label>
-                            <input type="text" class="form-control" name="paciente_rg" id="paciente_rg" placeholder="Informe o RG" <?php if(isset($dados['paciente_rg'])) print('value="'.$dados['paciente_rg'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="paciente_rg" id="paciente_rg" placeholder="Informe o RG" <?php if(isset($dados['paciente_rg'])) print('value="'.$dados['paciente_rg'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <!-- Date dd/mm/yyyy -->
                         <div class="form-group col-xs-9">
@@ -256,7 +256,7 @@ class View {
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="date" class="form-control" name="paciente_dataNascimento" <?php if(isset($dados['paciente_dataNascimento'])) print('value="'.$dados['paciente_dataNascimento'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="date" class="form-control" name="paciente_dataNascimento" <?php if(isset($dados['paciente_dataNascimento'])) print('value="'.$dados['paciente_dataNascimento'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                             <!-- /.input group -->
                         </div>
@@ -274,23 +274,23 @@ class View {
                         </div>
                         <div class="form-group col-xs-8">
                             <label for="paciente_logradouro">Logradouro</label>
-                            <input type="text" class="form-control" name="paciente_logradouro" id="paciente_logradouro" placeholder="Informe o logradouro" <?php if(isset($dados['paciente_logradouro'])) print('value="'.$dados['paciente_logradouro'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="paciente_logradouro" id="paciente_logradouro" placeholder="Informe o logradouro" <?php if(isset($dados['paciente_logradouro'])) print('value="'.$dados['paciente_logradouro'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-4">
                             <label for="paciente_numero">Numero</label>
-                            <input type="text" class="form-control" name="paciente_numero" id="paciente_numero" placeholder="Informe o numero" <?php if(isset($dados['paciente_numero'])) print('value="'.$dados['paciente_numero'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="paciente_numero" id="paciente_numero" placeholder="Informe o numero" <?php if(isset($dados['paciente_numero'])) print('value="'.$dados['paciente_numero'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="paciente_bairro">Bairro</label>
-                            <input type="text" class="form-control" name="paciente_bairro" id="paciente_bairro" placeholder="Informe o bairro" <?php if(isset($dados['paciente_bairro'])) print('value="'.$dados['paciente_bairro'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="paciente_bairro" id="paciente_bairro" placeholder="Informe o bairro" <?php if(isset($dados['paciente_bairro'])) print('value="'.$dados['paciente_bairro'].'"'); if(!$editable) print("disabled") ?> required> 
                         </div>
                         <div class="form-group col-xs-6">
                             <label for="paciente_cidade">Cidade</label>
-                            <input type="text" class="form-control" name="paciente_cidade" id="paciente_cidade" placeholder="Informe a cidade" <?php if(isset($dados['paciente_cidade'])) print('value="'.$dados['paciente_cidade'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="paciente_cidade" id="paciente_cidade" placeholder="Informe a cidade" <?php if(isset($dados['paciente_cidade'])) print('value="'.$dados['paciente_cidade'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-6">
                             <label for="paciente_cep">CEP</label>
-                            <input type="text" class="form-control" name="paciente_cep" id="paciente_cep" placeholder="Informe o CEP" <?php if(isset($dados['paciente_cep'])) print('value="'.$dados['paciente_cep'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="paciente_cep" id="paciente_cep" placeholder="Informe o CEP" <?php if(isset($dados['paciente_cep'])) print('value="'.$dados['paciente_cep'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-6">
                             <label for="paciente_telefone">Telefone</label>
@@ -302,7 +302,7 @@ class View {
                         </div>
                         <div class="form-group col-xs-6">
                             <label for="paciente_nomeMae">Nome da Mae</label>
-                            <input type="text" class="form-control" name="paciente_nomeMae" id="paciente_nomeMae" placeholder="Informe o nome da mae" <?php if(isset($dados['paciente_nomeMae'])) print('value="'.$dados['paciente_nomeMae'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="paciente_nomeMae" id="paciente_nomeMae" placeholder="Informe o nome da mae" <?php if(isset($dados['paciente_nomeMae'])) print('value="'.$dados['paciente_nomeMae'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-6">
                             <label for="paciente_nomePai">Nome do Pai</label>
@@ -310,7 +310,7 @@ class View {
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="paciente_cartaoSus">Cartão SUS</label>
-                            <input type="text" class="form-control" name="paciente_cartaoSus" id="paciente_cartaoSus" placeholder="Informe o numero do cartão SUS" <?php if(isset($dados['paciente_cartaoSus'])) print('value="'.$dados['paciente_cartaoSus'].'"'); if(!$editable) print("disabled") ?>>
+                            <input type="text" class="form-control" name="paciente_cartaoSus" id="paciente_cartaoSus" placeholder="Informe o numero do cartão SUS" <?php if(isset($dados['paciente_cartaoSus'])) print('value="'.$dados['paciente_cartaoSus'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                     </div>
                     <!-- /.box-body -->
