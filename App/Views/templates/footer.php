@@ -108,14 +108,21 @@
                 else
                     $('#hidden_crm').show();
             });
+            $("input[id*='mask_cpf']").inputmask({
+                mask: ['999.999.999-99'],
+                keepStatic: true
+            });
         });
 
         function validateFormFuncionario()
         {
             var x = document.forms["myForm"]["funcionario_cpf"].value;
-            if (isNaN(x) || x.length!=13)
+            var res = x.replace(".","");
+            var res = res.replace(".","");
+            var res = res.replace("-","");
+            if (isNaN(res))
             {
-                alert("CPF incompleto, informe 13 digitos numéricos.");
+                alert("CPF incompleto, informe 11 digitos numéricos.");
                 return false;
             }
 
@@ -124,13 +131,14 @@
         function validateFormPaciente()
         {
             var x = document.forms["myForm"]["paciente_cpf"].value;
-            if (isNaN(x) || x.length!=13)
+            if (x.length!=14)
             {
-                alert("CPF incompleto, informe 13 digitos numéricos.");
+                alert("CPF incompleto, informe 11 digitos numéricos.");
                 return false;
             }
 
         }
+
     </script>
 </body>
 </html>

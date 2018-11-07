@@ -102,7 +102,7 @@ class View {
                         </div>
                         <div class="form-group col-xs-7">
                         <label for="funcionario_cpf">CPF</label>
-                        <input type="text" class="form-control" name="funcionario_cpf" id="funcionario_cpf" placeholder="Informe o cpf" <?php if(isset($dados['funcionario_cpf'])) print('value="'.$dados['funcionario_cpf'].'"'); if(!$editable) print("disabled") ?> required>
+                        <input type="text" class="form-control" name="funcionario_cpf" id="funcionario_cpf mask_cpf" placeholder="Informe o cpf" <?php if(isset($dados['funcionario_cpf'])) print('value="'.$dados['funcionario_cpf'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-5">
                             <label for="funcionario_rg">RG</label>
@@ -243,7 +243,7 @@ class View {
                         </div>
                         <div class="form-group col-xs-7">
                         <label for="paciente_cpf">CPF</label>
-                        <input type="text" class="form-control" name="paciente_cpf" id="paciente_cpf" placeholder="Informe o cpf" <?php if(isset($dados['paciente_cpf'])) print('value="'.$dados['paciente_cpf'].'"'); if(!$editable) print("disabled") ?> required>
+                        <input type="text" class="form-control" name="paciente_cpf" id="paciente_cpf mask_cpf" placeholder="Informe o cpf" <?php if(isset($dados['paciente_cpf'])) print('value="'.$dados['paciente_cpf'].'"'); if(!$editable) print("disabled") ?> required>
                         </div>
                         <div class="form-group col-xs-5">
                             <label for="paciente_rg">RG</label>
@@ -598,7 +598,7 @@ class View {
 
             <form action="?pag=login&acao=validarlogin" method="post">
             <div class="form-group has-feedback">
-                <input type="cpf" class="form-control" name="cpf" placeholder="Informe o CPF">
+                <input type="cpf" class="form-control" id="mask_cpf" name="cpf" placeholder="Informe o CPF">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
