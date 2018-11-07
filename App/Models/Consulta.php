@@ -38,6 +38,13 @@ class Consulta extends Generic
         $stmt = $mypdo->run("SELECT * FROM ".$this->tablename." WHERE funcionario_id=?",[$funcionario_id])->fetchAll();
         return $stmt;
     }
+	
+	function searchPorPeriodo($tipo, $inicio, $fim)
+    {
+        $mypdo = new MyPDO();
+        $stmt = $mypdo->run("SELECT * FROM ".$this->tablename." NATURAL JOIN Funcionario NATURAL JOIN Paciente WHERE consulta_tipo=? AND (consulta_data BETWEEN ? AND ?) ORDER BY consulta_data",[$tipo, $inicio, $fim])->fetchAll();
+        return $stmt;
+    }
     
     function searchPorVacina($vacina_id)
     {
@@ -45,6 +52,7 @@ class Consulta extends Generic
         $stmt = $mypdo->run("SELECT * FROM ".$this->tablename." WHERE vacina_id=?",[$vacina_id])->fetchAll();
         return $stmt;
     }
+	
     
     function searchPorLoteVacina($vacina_id, $vlote_codigo)
     {

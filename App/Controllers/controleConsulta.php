@@ -219,6 +219,7 @@ class controleConsulta extends controleGeral {
             else if($acao=="agendarconsultar")
             {
                 View::includeHeader();
+
                 if(isset($_POST['submit']))
                 {
                     $dados = [];
@@ -227,28 +228,85 @@ class controleConsulta extends controleGeral {
                         $dados['paciente_id'] = $_GET['paciente_id'];
                         if(isset($_POST['consulta_data']))
                         {
-                            $dados['consulta_data'] = $_POST['consulta_data'];
-                            if(isset($_POST['funcionario_id']))
-                            {
-                                if($_POST['funcionario_id']!=-1) $dados['funcionario_id'] = $_POST['funcionario_id'];
-                                if(isset($_POST['consulta_desc']))
-                                {
-                                    $dados['consulta_desc'] = $_POST['consulta_desc'];
-                                    $dados['consulta_tipo'] = 2;
-                                    $useDB = new Consulta();
-                                    $res = $useDB->insert($dados);
-                                    print("<script>history.go(-2);</script>");
-                                }
-                            }
+							$dia = $_POST['consulta_data'];
+							$tempoInicial = $dia." 00:00:00";
+							$tempoFinal = $dia." 23:59:59";
+							?>
+
+                            <div class="box box-default">
+                                <div class="box-header">
+                                    <h3 class="box-title">Escolha o horario</h3>
+                                </div>
+                                    <!-- /.-header -->
+                                    <div class="box-body">
+                            <?php
+							$useDB = new Consulta();
+							$consultas = $useDB->searchPorPeriodo(2, $tempoInicial, $tempoFinal);
+							$horarios = Array();
+							foreach($consultas as $consu)
+							{
+								$horarios[$consu['consulta_data']] = $consu;
+							}
+							print('<div class="col-xs-12 table-responsive">');
+							print("<table class='table table-bordered table-striped'>");
+							for($hora=6;$hora<20;$hora++)
+							{
+								
+								$formatHora = $hora;
+								print("<td><table><tr><th>".$formatHora."</th></tr>");
+								if($hora<10) $formatHora = "0".$hora;
+								for($min=0;$min<60;$min=$min+20)
+								{
+									$formatMin = $min;
+									if($min<10) $formatMin = "0".$min;
+									$tempo = $dia." ".$formatHora.":".$formatMin.":00";
+									
+									if(isset($horarios[$tempo])) print("<tr><td>-</td></tr>");
+									else
+									{
+									?>
+									<tr><td><a href="?pag=consulta&acao=agendarconsultar&paciente_id=<?php print($_REQUEST['paciente_id']); ?>&funcionario_id=<?php print($_POST['funcionario_id']); ?>&horario=<?php print($tempo); ?>&consulta_desc=<?php print($_POST['consulta_desc']); ?>"><?php print($formatHora.":".$formatMin); ?></a></td></tr>
+									<?php
+									}
+								}
+								print("</table></td>");
+							}
+                            print("<table></div>");
+                            ?>
+                                    </div>
+                                <!-- /.-body -->
+                            </div>
+                        <?php
                         }
                     }
+                    
                 }
                 else
                 {
-                    View::consultaAgendarForm($_GET['paciente_id']);
+					if(isset($_GET['horario']))
+					{
+						$dados['paciente_id'] = $_GET['paciente_id'];
+						if(isset($_GET['horario']))
+						{
+							$dados['consulta_data'] = $_GET['horario'];
+                            if(isset($_GET['funcionario_id']))
+                            {
+                                if($_GET['funcionario_id']!=-1) $dados['funcionario_id'] = $_GET['funcionario_id'];
+                                if(isset($_GET['consulta_desc']))
+                                {
+                                    $dados['consulta_desc'] = $_GET['consulta_desc'];
+                                    $dados['consulta_tipo'] = 2;
+                                    $useDB = new Consulta();
+                                    $res = $useDB->insert($dados);
+                                    print("<script>history.go(-3);</script>");
+                                }
+                            }
+						}
+					}
+                    else View::consultaAgendarForm($_GET['paciente_id']);
+                    View::includeFooter();
                 }
                 
-                View::includeFooter();
             }
             else if($acao=="consultar")
             {

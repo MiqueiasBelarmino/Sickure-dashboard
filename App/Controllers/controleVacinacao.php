@@ -503,28 +503,104 @@ class controleVacinacao extends controleGeral {
                             }
                             else
                             {
-                                if(isset($_POST['submit']))
+								if(isset($_GET['horario']))
+								{
+									$tempo = $_GET['horario'];
+									//$createdate = "1971-01-01 00:00:01";
+									//$createdate = strtotime($_POST['datavac']);
+									//$createdate = new DateTime($_POST['datavac']);
+									//print($createdate."<br>");
+									if($acao=="vacinar") $dados['cvac_tipo'] = 1;
+									else if($acao=="agendarvacinar") $dados['cvac_tipo'] = 2;
+									else if($acao=="registrarvacinar") $dados['cvac_tipo'] = 3;
+									$dados['cvac_data'] = $tempo;
+									$dados['funcionario_id'] = 1; //FUNCIONARIO LOGADO
+									$funcDB = new CarteiraVacinacao();
+									$res = $funcDB->insert($dados);
+									if($res==-1)
+									{
+										print("Falha.");
+									}
+									else 
+										print("<script> location.replace('?pag=vacinacao&acao=visualizarpaciente&paciente_id=".$_GET['paciente_id']."'); </script>");
+								}
+                                else if(isset($_POST['submit']))
                                 {
-                                    //$createdate = $_POST['datavac'];
-                                    $createdate = str_replace("T", " ", $_POST['datavac']);
-                                    $createdate = $createdate.":00";
-                                    //$createdate = "1971-01-01 00:00:01";
-                                    //$createdate = strtotime($_POST['datavac']);
-                                    //$createdate = new DateTime($_POST['datavac']);
-                                    //print($createdate."<br>");
-                                    if($acao=="vacinar") $dados['cvac_tipo'] = 1;
-                                    else if($acao=="agendarvacinar") $dados['cvac_tipo'] = 2;
-                                    else if($acao=="registrarvacinar") $dados['cvac_tipo'] = 3;
-                                    $dados['cvac_data'] = $createdate;
-                                    $dados['funcionario_id'] = 1; //FUNCIONARIO LOGADO
-                                    $funcDB = new CarteiraVacinacao();
-                                    $res = $funcDB->insert($dados);
-                                    if($res==-1)
-                                    {
-                                        print("Falha.");
-                                    }
-                                    else 
-                                        print("<script> location.replace('?pag=vacinacao&acao=visualizarpaciente&paciente_id=".$_GET['paciente_id']."'); </script>");
+									if($acao=="agendarvacinar")
+									{
+										$dia = $_POST['datavac'];
+										//$createdate = str_replace("T", " ", $_POST['datavac']);
+										//print($createdate);
+										$tempoInicial = $dia." 00:00:00";
+										$tempoFinal = $dia." 23:59:59";
+										?>
+                                        <div class="box box-default">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Escolha o horario</h3>
+                                            </div>
+                                                <!-- /.-header -->
+                                                <div class="box-body">
+                                        <?php
+										$useDB = new CarteiraVacinacao();
+										$vacinas = $useDB->searchPorPeriodo(2, $tempoInicial, $tempoFinal);
+										$horarios = Array();
+										foreach($vacinas as $vac)
+										{
+											$horarios[$vac['cvac_data']] = $vac;
+										}
+										print('<div class="col-xs-12 table-responsive">');
+										print("<table class='table table-bordered table-striped'>");
+										for($hora=6;$hora<19;$hora++)
+										{
+											
+											$formatHora = $hora;
+											print("<td><table><tr><th>".$formatHora."</th></tr>");
+											if($hora<10) $formatHora = "0".$hora;
+											for($min=0;$min<60;$min=$min+10)
+											{
+												$formatMin = $min;
+												if($min<10) $formatMin = "0".$min;
+												$tempo = $dia." ".$formatHora.":".$formatMin.":00";
+												
+												if(isset($horarios[$tempo])) print("<tr><td>-</td></tr>");
+												else
+												{
+												?>
+												<tr><td><a href="?pag=vacinacao&acao=agendarvacinar&vacina_id=<?php print($_REQUEST['vacina_id']); ?>&paciente_id=<?php print($_REQUEST['paciente_id']); ?>&horario=<?php print($tempo); ?>"><?php print($formatHora.":".$formatMin); ?></a></td></tr>
+												<?php
+												}
+											}
+											print("</table></td>");
+										}
+                                        print("<table></div>");
+                                        ?>
+                                                </div>
+                                            <!-- /.-body -->
+                                        </div>
+                                    <?php
+									}
+									else if($acao=="registrarvacinar")
+									{
+										$dia = $_POST['datavac'];
+										$tempo = $dia." 00:00:00";
+										//$createdate = "1971-01-01 00:00:01";
+										//$createdate = strtotime($_POST['datavac']);
+										//$createdate = new DateTime($_POST['datavac']);
+										//print($createdate."<br>");
+										if($acao=="vacinar") $dados['cvac_tipo'] = 1;
+										else if($acao=="agendarvacinar") $dados['cvac_tipo'] = 2;
+										else if($acao=="registrarvacinar") $dados['cvac_tipo'] = 3;
+										$dados['cvac_data'] = $tempo;
+										$dados['funcionario_id'] = 1; //FUNCIONARIO LOGADO
+										$funcDB = new CarteiraVacinacao();
+										$res = $funcDB->insert($dados);
+										if($res==-1)
+										{
+											print("Falha.");
+										}
+										else 
+											print("<script> location.replace('?pag=vacinacao&acao=visualizarpaciente&paciente_id=".$_GET['paciente_id']."'); </script>");
+									}
 
                                 }
                                 else
