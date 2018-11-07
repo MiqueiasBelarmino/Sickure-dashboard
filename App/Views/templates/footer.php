@@ -113,12 +113,13 @@
         function validateForm()
         {
             var x = document.forms["myForm"]["funcionario_cpf"].value;
-            var y = document.forms["myForm"]["paciente_cpf"].value;
             if (isNaN(x) || x.length!=13)
             {
                 alert("CPF incompleto, informe 13 digitos numéricos.");
                 return false;
-            }else if(isNaN(y) || y.length!=13){
+            }
+            var x = document.forms["myForm"]["paciente_cpf"].value;
+            if(isNaN(x) || x.length!=13){
                 alert("CPF incompleto, informe 13 digitos numéricos.");
                 return false;
             }
