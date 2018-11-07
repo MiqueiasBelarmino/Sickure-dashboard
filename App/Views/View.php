@@ -90,11 +90,11 @@ class View {
 
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Adicionar Funcionário</h3>
+                    <h3 class="box-title">Funcionário</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form action="?pag=funcionario&acao=<?php print($action)?>" method="post" role="form" onsubmit="return validateForm()" name="myForm">
+                <form action="?pag=funcionario&acao=<?php print($action)?>" method="post" role="form" onsubmit="return validateFormFuncionario()" name="myForm">
                     <div class="box-body row">
                         <div class="form-group col-xs-12">
                         <label for="funcionario_nome">Nome completo</label>
@@ -235,7 +235,7 @@ class View {
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form action="?pag=paciente&acao=<?php print($action)?>" method="post" role="form" onsubmit="return validateForm()" name="myForm">
+                <form action="?pag=paciente&acao=<?php print($action)?>" method="post" role="form" onsubmit="return validateFormPaciente()" name="myForm">
                     <div class="box-body row">
                         <div class="form-group col-xs-12">
                         <label for="paciente_nome">Nome completo</label>

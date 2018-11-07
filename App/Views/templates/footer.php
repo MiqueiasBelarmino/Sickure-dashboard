@@ -110,7 +110,7 @@
             });
         });
 
-        function validateForm()
+        function validateFormFuncionario()
         {
             var x = document.forms["myForm"]["funcionario_cpf"].value;
             if (isNaN(x) || x.length!=13)
@@ -118,11 +118,18 @@
                 alert("CPF incompleto, informe 13 digitos numéricos.");
                 return false;
             }
+
+        }
+
+        function validateFormPaciente()
+        {
             var x = document.forms["myForm"]["paciente_cpf"].value;
-            if(isNaN(x) || x.length!=13){
+            if (isNaN(x) || x.length!=13)
+            {
                 alert("CPF incompleto, informe 13 digitos numéricos.");
                 return false;
             }
+
         }
     </script>
 </body>
