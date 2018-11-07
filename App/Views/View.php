@@ -28,11 +28,11 @@ class View {
         ?>
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Medicamento</h3>
+                <h3 class="box-title">Alterar senha</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="?pag=funcionario&acao=trocasenha&id=<?php print($id);?>" method="post" role="form">
+            <form action="?pag=funcionario&acao=trocasenha&id=<?php print($_SESSION['usuario_logado']['funcionario_id']);?>" method="post" role="form">
                 <div class="box-body row">
                     <div class="form-group col-xs-6">
                         <label for="novaSenha">Nova senha</label>

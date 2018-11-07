@@ -93,7 +93,7 @@ class controleFuncionario extends controleGeral {
 				print("<br><br>Redirecionando para a pagina anterior...");
                 View::includeFooter();
 				
-				print("<script>setTimeout(function(){history.go(-2);}, 2500);</script>");
+				print("<script>setTimeout(function(){history.go(-2);}, 0);</script>");
             }
             else if($acao=="listar")
             {
