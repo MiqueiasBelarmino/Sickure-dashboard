@@ -274,6 +274,7 @@ class controleConsulta extends controleGeral {
                             print("<table></div>");
                             ?>
                                     </div>
+									<a href="" onClick="history.go(-1)" class='btn btn-flat btn-default pull-left'>Voltar</a>
                                 <!-- /.-body -->
                             </div>
                         <?php

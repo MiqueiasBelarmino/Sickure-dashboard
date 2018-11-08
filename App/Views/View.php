@@ -670,7 +670,6 @@ class View {
                     <div class="form-group col-xs-6">
                         <label for="consulta_funcionario">Medico</label>
                         <select name="funcionario_id" class="form-control select2">
-                        <option value="-1">INDEFINIDO</option>
                             <?php
                             $useDB = new Funcionario();
                             $medicos = $useDB->searchMedicos();
@@ -686,14 +685,13 @@ class View {
 
                 <div class="box-footer">
                     <a onClick="history.go(-1)" class='btn btn-flat btn-default pull-left'>Voltar</a>
-                    <input type="submit" name="submit" value="Salvar" class='btn btn-flat btn-success pull-right'>
+                    <input type="submit" name="submit" value="Checar horarios" class='btn btn-flat btn-success pull-right'>
                     </form>
                 </div>
         </div>
         <!-- /.box -->
     <?php
     }
-
     public static function relatorioVacinacao()
     {
         $comando = "";

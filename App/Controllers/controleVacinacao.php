@@ -262,30 +262,38 @@ class controleVacinacao extends controleGeral {
                 </div>
                     <!-- /.-header -->
                     <div class="box-body">
-                        
-                    <table id="example2" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Vacina</th>
-                            <th>Lote</th>
-                            <th>Tipo</th>
-                            <th>Resposavel</th>
-                            <th>Ações</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
+					
+					<?php
                         $funcDBVacinas = new CarteiraVacinacao();
                         $vacinas = $funcDBVacinas->searchPorPaciente($_GET['paciente_id']);
+						$idcheck = -1;
                         foreach($vacinas as $vacinada)
                         {
                             $tipo = $vacinada['cvac_tipo'];
                             if($tipo!=2)
                             {
+								if($vacinada['vacina_id']!=$idcheck)
+								{
+									if($idcheck!=-1) print("<tbody></table>");
+									$idcheck = $vacinada['vacina_id'];
+									print("<br><br><p><strong><font size='+2'>".$vacinada['vacina_nome']."</font></strong></p>");
+									print("<table class='table table-bordered table-striped'>");
+									?>
+										<thead>
+										<tr>
+											<th>Data</th>
+											<th>Lote</th>
+											<th>Tipo</th>
+											<th>Resposavel</th>
+											<th>Ações</th>
+										</tr>
+										</thead>
+										<tbody>
+									<?php
+								}
+								
                                 print("<tr>");
                                 print("<td>".$vacinada['cvac_data']."</td>");
-                                print("<td>".$vacinada['vacina_nome']."</td>");
                                 print("<td>".$vacinada['vlote_codigo']."</td>");
                                 if($vacinada['cvac_tipo']==0) print("<td>Faltou</td>");
                                 else if($vacinada['cvac_tipo']==1) print("<td>Realizado</td>");
@@ -297,21 +305,8 @@ class controleVacinacao extends controleGeral {
                                 print("</tr>");
                             }
                         }
-                        ?>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>Data</th>
-                            <th>Vacina</th>
-                            <th>Lote</th>
-                            <th>Tipo</th>
-                            <th>Resposavel</th>
-                            <th>Ações</th>
-                        </tr>
-                        </tfoot>
-                    </table>
-                    </div>
-                    <!-- /.-body -->
+					?>
+					
                 </div>
                 </table>
                 <?php
@@ -576,6 +571,7 @@ class controleVacinacao extends controleGeral {
                                         ?>
                                                 </div>
                                             <!-- /.-body -->
+											<a href="" onClick="history.go(-1)" class='btn btn-flat btn-default pull-left'>Voltar</a>
                                         </div>
                                     <?php
 									}
@@ -623,7 +619,7 @@ class controleVacinacao extends controleGeral {
 
                                                 <div class="box-footer">
                                                 <a href="?pag=vacina&acao=listar" class='btn btn-flat btn-default pull-left'>Voltar</a>
-                                                <input type="submit" name="submit" value="Salvar" class='btn btn-flat btn-primary pull-right'>
+                                                <input type="submit" name="submit" value="Checar horarios" class='btn btn-flat btn-primary pull-right'>
                                                 </div>
                                             </form>
                                         </div>
