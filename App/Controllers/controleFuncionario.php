@@ -27,6 +27,7 @@ class controleFuncionario extends controleGeral {
                         $dados[$key] = $val;
                     }
                 }
+				$dados['funcionario_senha'] = $dados['funcionario_dataNascimento'];
                 $funcDB = new Funcionario();
                 $res = $funcDB->insert($dados);
                 View::includeHeader("Funcionário");

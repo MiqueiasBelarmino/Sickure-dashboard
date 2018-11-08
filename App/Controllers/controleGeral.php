@@ -23,9 +23,9 @@ class controleGeral {
             <br>2º Entrega, 23/10 - 5º Entrega (N5, 25%):
             <br>- <strike>Agendar Vacinação;</strike>
             <br>- <strike>Consultar Carteira de Vacinação;</strike>
-            <br>- Relatório de Vacinação;
+            <br>- <strike>Relatório de Vacinação;</strike>
             <br>- <strike>Manter Medicamento</strike>;
-            <br>- Gerar Relatório de Estoque de Medicamentos;
+            <br>- <strike>Gerar Relatório de Estoque de Medicamentos;</strike>
             <br>- <strike>Agendar Consulta Médica.</strike>
             <br>
             <br>3º Entrega, 04/12 - 6º Entrega (N6, 45%):

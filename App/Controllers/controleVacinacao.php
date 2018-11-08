@@ -619,7 +619,20 @@ class controleVacinacao extends controleGeral {
 
                                                 <div class="box-footer">
                                                 <a href="?pag=vacina&acao=listar" class='btn btn-flat btn-default pull-left'>Voltar</a>
-                                                <input type="submit" name="submit" value="Checar horarios" class='btn btn-flat btn-primary pull-right'>
+												<?php
+													if($acao=="registrarvacinar")
+													{
+												?>
+													<input type="submit" name="submit" value="Registrar" class='btn btn-flat btn-primary pull-right'>
+												<?php
+													}
+													else
+													{
+														?>
+													<input type="submit" name="submit" value="Checar horarios" class='btn btn-flat btn-primary pull-right'>
+														<?php
+													}
+													?>
                                                 </div>
                                             </form>
                                         </div>
