@@ -18,7 +18,7 @@ class MyPDO extends PDO
     {
         $servername = "localhost";
         $username = "root";
-        $password = "ifsp";
+        $password = "";
         $dbname = "SicKure";
         $default_options = [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,

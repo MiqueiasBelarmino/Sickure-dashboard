@@ -63,6 +63,46 @@ class View {
     <?php
     }
     
+    public static function paciTrocaSenhaForm($id)
+    {
+        ?>
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Alterar senha</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form action="?pag=paciente&acao=trocasenha&id=<?php print($_SESSION['usuario_logado']['paciente_id']);?>" method="post" role="form">
+                <div class="box-body row">
+                    <div class="form-group col-xs-6">
+                        <label for="novaSenha">Nova senha</label>
+                        <input type="password" class="form-control" name="novaSenha" id="novaSenha"  placeholder="Nova senha" required>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="novaSenha2">Confirmar senha</label>
+                        <input type="password" class="form-control" name="novaSenha2" id="novaSenha2"  placeholder="Confirmar senha" required>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="atualSenha">Senha atual</label>
+                        <input type="password" class="form-control" name="atualSenha" id="atualSenha"  placeholder="Senha atual" required>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                <a href="index.php" onClick="history.go(-1)" class='btn btn-flat btn-default pull-left'>Voltar</a>
+                <?php
+                
+                    if(isset($dados['funcionario_id'])) print("<input type='hidden' name='funcionario_id' value='".$dados['medicamento_id']."'>");
+                     print("<input type='submit' name='submit' value='Salvar' class='btn btn-flat btn-success pull-right'>");
+                    ?>
+                </div>
+            </form>
+        </div>
+        <!-- /.box -->
+    <?php
+    }
+    
     
     public static function formFuncionario($dados = null, $editable = true)
     {
@@ -662,6 +702,32 @@ class View {
                     <div class="form-group col-xs-6">
                         <label for="consulta_data">Data</label>
                         <input type="date" class="form-control" name="consulta_data" id="consulta_data"  <?php if(isset($dados['consulta_data'])) print('value="'.$dados['consulta_data'].'"'); else print('value="'.date('Y-m-d', time()).'"');?> required>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label for="consulta_funcionario">Hora</label>
+                        <select name="consulta_hora" class="form-control select2">
+                            <?php
+                            //$useDB = new Funcionario();
+                            //$medicos = $useDB->searchMedicos();
+                            //foreach($medicos as $med)
+                            //{
+                            //    print("<option value='".$med['funcionario_id']."'>".$med['funcionario_nome']."</option>");
+                            //}
+                            ?>
+                        </select>   
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label for="consulta_funcionario">Minuto</label>
+                        <select name="consulta_minuto" class="form-control select2">
+                            <?php
+                            //$useDB = new Funcionario();
+                            //$medicos = $useDB->searchMedicos();
+                            //foreach($medicos as $med)
+                            //{
+                            //    print("<option value='".$med['funcionario_id']."'>".$med['funcionario_nome']."</option>");
+                            //}
+                            ?>
+                        </select>   
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="consulta_desc">Descrição</label>

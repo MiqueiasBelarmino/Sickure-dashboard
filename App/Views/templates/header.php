@@ -15,6 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="layout/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="layout/Ionicons/css/ionicons.min.css">
+  
   <!-- DataTables -->
   <link rel="stylesheet" href="layout/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Select2 -->
@@ -25,6 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="layout/dist/css/skins/skin-blue-light.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,6 +41,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <style>
       .box-title{
             text-transform: uppercase;
+      }
+      .ui-autocomplete-loading {
+            background: white url("./images/ui-anim_basic_16x16.gif") right center no-repeat;
+      }
+      .btn-info{
+            background-color: #343838 !important;
+            border-color: #008C9E !important;
+      }
+      .btn-info:hover{
+            background-color: #343848 !important;
+            border-color: #00B4CC !important;
       }
       </style>
 </head>

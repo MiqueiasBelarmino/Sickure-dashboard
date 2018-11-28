@@ -62,4 +62,19 @@ class Paciente extends Generic
         }
         else return 0;
     }
+    
+    function logar($cpf, $senha)
+    {
+        $mypdo = new MyPDO();
+        $row = $mypdo->run("SELECT * FROM ".$this->tablename." WHERE ".$this->ativokey."=1 AND paciente_cpf=? AND paciente_senha=?",[$cpf,$senha])->fetch();
+        return $row;
+    }
+    
+    
+    function buscaCompleta($busca) //Nome, CPF, SUS, RG
+    {
+        $mypdo = new MyPDO();
+        $stmt = $mypdo->run("SELECT * FROM ".$this->tablename." WHERE paciente_nome LIKE ? OR paciente_cpf LIKE ? OR paciente_rg LIKE ? OR paciente_cartaoSus LIKE ?",["%".$busca."%","%".$busca."%","%".$busca."%","%".$busca."%"])->fetchAll();
+        return $stmt;
+    }
 }

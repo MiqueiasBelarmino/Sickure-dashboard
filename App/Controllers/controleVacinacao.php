@@ -200,9 +200,17 @@ class controleVacinacao extends controleGeral {
                     </div>
                 </div>
                 <div class="box-body">
+                    <?php
+                    if(isset($_SESSION['usuario_logado']['funcionario_id']))
+                    {
+                    ?>
                     <a href="?pag=vacinacao&acao=vacinar&paciente_id=<?php print($_GET['paciente_id'])?>" class="btn btn-flat btn-info">Aplicar vacina</a>
-                    <a href="?pag=vacinacao&acao=agendarvacinar&paciente_id=<?php print($_GET['paciente_id'])?>" class="btn btn-flat btn-info">Agendar vacina</a>
                     <a href="?pag=vacinacao&acao=registrarvacinar&paciente_id=<?php print($_GET['paciente_id'])?>" class="btn btn-flat btn-info">Registrar vacina</a>
+                    <?php
+                    }
+                    ?>
+                    <a href="?pag=vacinacao&acao=agendarvacinar&paciente_id=<?php print($_GET['paciente_id'])?>" class="btn btn-flat btn-info">Agendar vacina</a>
+                    
                 </div>
                 </div>
 
@@ -235,7 +243,15 @@ class controleVacinacao extends controleGeral {
                                 print("<td>".$vacinada['vacina_nome']."</td>");
                                 print("<td><table><tr>");
                                 //print("<td><a href=''>Vacinar</a></td>"); http://localhost/cesar/?pag=vacinacao&acao=vacinar&vacina_id=1&paciente_id=1
-                                print("<td><a href='?pag=vacinacao&acao=vacinar&vacina_id=".$vacinada['vacina_id']."&paciente_id=".$vacinada['paciente_id']."&cvac_data=".$vacinada['cvac_data']."'class='btn btn-flat btn-primary'><i class='fa fa-eyedropper'></i>  Vacinar</a>");
+                                
+                                
+                    
+                                
+                                
+                                 
+                                
+                                
+                                if(isset($_SESSION['usuario_logado']['funcionario_id'])) print("<td><a href='?pag=vacinacao&acao=vacinar&vacina_id=".$vacinada['vacina_id']."&paciente_id=".$vacinada['paciente_id']."&cvac_data=".$vacinada['cvac_data']."'class='btn btn-flat btn-primary'><i class='fa fa-eyedropper'></i>  Vacinar</a>");
                                 print(" <a href='?pag=vacinacao&acao=excluir&vacina_id=".$vacinada['vacina_id']."&paciente_id=".$vacinada['paciente_id']."&cvac_data=".$vacinada['cvac_data']."'class='btn btn-flat btn-danger'><i class='fa fa-close'></i> Cancelar</a></td>");
                                 print("</tr></table>");
                                 print("</tr>");
@@ -285,7 +301,7 @@ class controleVacinacao extends controleGeral {
 											<th>Lote</th>
 											<th>Tipo</th>
 											<th>Resposavel</th>
-											<th>Ações</th>
+											<!-- <th>Ações</th> -->
 										</tr>
 										</thead>
 										<tbody>
@@ -301,7 +317,7 @@ class controleVacinacao extends controleGeral {
                                 else if($vacinada['cvac_tipo']==3) print("<td>Preenchimento</td>");
                                 else print("<td>???</td>");
                                 print("<td>".$vacinada['funcionario_nome']."</td>");
-                                print("<td><a href='?pag=vacinacao&acao=excluir&vacina_id=".$vacinada['vacina_id']."&paciente_id=".$vacinada['paciente_id']."&cvac_data=".$vacinada['cvac_data']."'class='btn btn-flat btn-danger'><i class='fa fa-trash'></i> Excluir</a></td>");
+                                //print("<td><a href='?pag=vacinacao&acao=excluir&vacina_id=".$vacinada['vacina_id']."&paciente_id=".$vacinada['paciente_id']."&cvac_data=".$vacinada['cvac_data']."'class='btn btn-flat btn-danger'><i class='fa fa-trash'></i> Excluir</a></td>");
                                 print("</tr>");
                             }
                         }

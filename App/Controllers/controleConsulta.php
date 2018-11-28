@@ -193,7 +193,8 @@ class controleConsulta extends controleGeral {
                                     print("<td>".$cons['consulta_desc']."</td>");
                                     print("<td>".$cons['funcionario_nome']."</td>");
                                     //print("<td><a href=''>Vacinar</a></td>"); http://localhost/cesar/?pag=consulta&acao=vacinar&vacina_id=1&paciente_id=1
-                                    print("<td><a href='?pag=consulta&acao=consultar&consulta_id=".$cons['consulta_id']."'class='btn btn-flat bg-primary'><i class='fa fa-check'></i> Confirmar</a> ");
+                                    print("<td>");
+                                    if(isset(['usuario_logado']['funcionario_id'])) print("<a href='?pag=consulta&acao=consultar&consulta_id=".$cons['consulta_id']."'class='btn btn-flat bg-primary'><i class='fa fa-check'></i> Confirmar</a> ");
                                     print("<a href='?pag=consulta&acao=excluir&consulta_id=".$cons['consulta_id']."'class='btn btn-flat btn-danger'><i class='fa fa-close'></i> Cancelar</a></td>");
                                     print("</tr>");
                                 }

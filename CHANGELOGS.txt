@@ -1,0 +1,40 @@
+BANCO
+
+CREATE TABLE RetiradaMedicamento
+(
+	rmedicamento_id INT PRIMARY KEY AUTO_INCREMENT,
+	mlote_codigo INT NOT NULL,
+    medicamento_id INT NOT NULL,
+    funcionario_id INT NOT NULL,
+    rmedicamento_data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    rmedicamento_medicoCRM VARCHAR(20),
+    rmedicamento_pacienteNome VARCHAR(30),
+    rmedicamento_pacienteCPF VARCHAR(14),
+    rmedicamento_pacienteContato VARCHAR(16),
+    rmedicamento_identificadorReceita VARCHAR(20),
+    FOREIGN KEY(mlote_codigo) REFERENCES LoteMedicamento(mlote_codigo),
+    FOREIGN KEY(funcionario_id) REFERENCES Funcionario(funcionario_id),
+    FOREIGN KEY(medicamento_id) REFERENCES Medicamento(medicamento_id)
+);
+
+*Paciente desvinculado com sistema
+*Campos opcionais propositalmente
+
+
+
+Views/templates/menu.php
+	*Relatorio agora qualquer funcionario pode ver (antes era só atendente)
+
+
+
+
+
+Controllers/controlePaciente.php
+	*else if($acao=="inserir")            //Antes salvava sem senha.
+
+
+
+
+controleMedicamento
+RetiradaMedicamento.php
+index.php

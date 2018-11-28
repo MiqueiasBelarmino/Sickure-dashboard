@@ -25,26 +25,65 @@ class controleLogin extends controleGeral {
             }
             else if($acao=="logout")
             {
+                $_SESSION['usuario_funcionario'] = null; 
+                $_SESSION['usuario_paciente'] = null; 
                 $_SESSION['usuario_logado'] = null; 
                 View::includeHeader();
                 View::formFuncLogin();
                 View::includeFooter();
             }
+            else if($acao=="trocaracesso")
+            {
+                if(isset($_SESSION['usuario_logado']['funcionario_id']))
+                {
+                    if(isset($_SESSION['usuario_paciente']))
+                    {
+                        $_SESSION['usuario_logado'] = $_SESSION['usuario_paciente'];
+                        header("Location: index.php");
+                    }
+                }
+                else if(isset($_SESSION['usuario_logado']['paciente_id']))
+                {
+                    if(isset($_SESSION['usuario_funcionario']))
+                    {
+                        $_SESSION['usuario_logado'] = $_SESSION['usuario_funcionario'];
+                        header("Location: index.php");
+                    }
+                }
+            }
             else if($acao=="validarlogin")
             {
                 $cpf = $_POST['cpf'];
                 $senha = $_POST['senha'];
-                $obj = new Funcionario();
-                $dados = $obj->logar($cpf, $senha);
-                View::includeHeader();
-                if(isset($dados['funcionario_id']))
+                
+                $objFunc = new Funcionario();
+                $dadosFunc = $objFunc->logar($cpf, $senha);
+                
+                $objPaci = new Paciente();
+                $dadosPaci = $objPaci->logar($cpf, $senha);
+                
+                $_SESSION['usuario_logado'] = null;
+                
+                if(isset($dadosPaci['paciente_id']))
                 {
-                    $_SESSION['usuario_logado'] = $dados;
+                    $_SESSION['usuario_paciente'] = $dadosPaci;
+                    $_SESSION['usuario_logado'] = $dadosPaci;
+                }
+                
+                if(isset($dadosFunc['funcionario_id']))
+                {
+                    $_SESSION['usuario_funcionario'] = $dadosFunc;
+                    $_SESSION['usuario_logado'] = $dadosFunc;
+                }
+                
+                
+                View::includeHeader();
+                if(isset($_SESSION['usuario_logado']))
+                {
                     print("<script>location.href='index.php';</script>");
                 }
                 else
                 {
-                    $_SESSION['usuario_logado'] = null;
                     print("<script>alert('Credenciais invalidas.'); history.go(-1);</script>");
                 }
                 View::includeFooter();

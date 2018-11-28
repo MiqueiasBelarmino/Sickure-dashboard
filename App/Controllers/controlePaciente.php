@@ -47,6 +47,7 @@ class controlePaciente extends controleGeral {
                         $dados[$key] = $val;
                     }
                 }
+                $dados['paciente_senha'] = $dados['paciente_dataNascimento'];
                 $funcDB = new Paciente();
                 $res = $funcDB->update($dados['paciente_id'], $dados);
                 View::includeHeader();
@@ -185,7 +186,7 @@ class controlePaciente extends controleGeral {
                 }
                 else
                 {
-                    View::funcTrocaSenhaForm($_GET['id']);
+                    View::paciTrocaSenhaForm($_GET['id']);
                 }
                 View::includeFooter();
                 

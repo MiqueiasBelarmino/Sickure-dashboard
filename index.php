@@ -24,6 +24,7 @@ require_once './App/Models/Medicamento.php';
 require_once './App/Models/LoteMedicamento.php';
 require_once './App/Models/CarteiraVacinacao.php';
 require_once './App/Models/Consulta.php';
+require_once './App/Models/RetiradaMedicamento.php';
 
 // views
 require_once './App/Views/View.php';

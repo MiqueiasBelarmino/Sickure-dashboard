@@ -93,6 +93,23 @@ CREATE TABLE LoteMedicamento
     PRIMARY KEY(mlote_codigo, medicamento_id)
 );
 
+CREATE TABLE RetiradaMedicamento
+(
+	rmedicamento_id INT PRIMARY KEY AUTO_INCREMENT,
+	mlote_codigo INT NOT NULL,
+    medicamento_id INT NOT NULL,
+    funcionario_id INT NOT NULL,
+    rmedicamento_data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    rmedicamento_medicoCRM VARCHAR(20) NOT NULL,
+    rmedicamento_pacienteNome VARCHAR(30) NOT NULL,
+    rmedicamento_pacienteCPF VARCHAR(14),
+    rmedicamento_pacienteContato VARCHAR(16),
+    rmedicamento_identificadorReceita VARCHAR(20),
+    FOREIGN KEY(mlote_codigo) REFERENCES LoteMedicamento(mlote_codigo),
+    FOREIGN KEY(funcionario_id) REFERENCES Funcionario(funcionario_id),
+    FOREIGN KEY(medicamento_id) REFERENCES Medicamento(medicamento_id)
+);
+
 CREATE TABLE Vacina
 (
 	vacina_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -172,4 +189,4 @@ CREATE TABLE Fila
     fila_tiposaida INT DEFAULT 0, #0 = em fila, 1 = vez executada, 2 = desistencia
     FOREIGN KEY(paciente_id) REFERENCES Paciente(paciente_id),
     FOREIGN KEY(funcionario_id) REFERENCES Funcionario(funcionario_id)
-);sickure
+);

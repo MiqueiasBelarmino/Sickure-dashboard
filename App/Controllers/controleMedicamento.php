@@ -258,6 +258,7 @@ class controleMedicamento extends controleGeral
                                         ?>
                                     </td>
                                     <td>
+                                        <a href="?pag=medicamento&acao=retirada&medicamento_id=<?php print($vaclot['medicamento_id']."&mlote_codigo=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i> Retirar</a>
                                         <a href="?pag=medicamento&acao=editarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat bg-orange btn-flat"><i class="fa fa-pencil"></i> Editar</a>
                                         <a href="?pag=medicamento&acao=visualizarlote&id=<?php print($vaclot['medicamento_id']."&cod=".$vaclot['mlote_codigo']) ?>" class="btn btn-flat btn-primary btn-flat"><i class="fa fa-eye"> Visualizar</i></a>
                                         
@@ -367,6 +368,79 @@ class controleMedicamento extends controleGeral
                 View::formMedicamento($res, true);
                 ?>
                     <a href="?pag=medicamento&acao=visualizar&id=<?php print($_GET['id'])?>">Cancelar</a>
+                <?php
+                View::includeFooter();
+            }
+            else if($acao=="retiradaconfirma")
+            {
+                View::includeHeader();
+                $mlote_codigo = $_REQUEST['mlote_codigo'];
+                $medicamento_id = $_REQUEST['medicamento_id'];
+                $funcionario_id = $_SESSION['usuario_logado']['funcionario_id'];
+                
+                $validos = Array(
+                    "rmedicamento_id",
+                    "mlote_codigo",
+                    "medicamento_id",
+                    "funcionario_id",
+                    "rmedicamento_data",
+                    "rmedicamento_medicoCRM",
+                    "rmedicamento_pacienteNome",
+                    "rmedicamento_pacienteCPF",
+                    "rmedicamento_pacienteContato",
+                    "rmedicamento_identificadorReceita"
+                );
+                $dados = Array();
+                
+                foreach ($_REQUEST as $key => $value)
+                {
+                    if (in_array($key, $validos)) $dados[$key] = $value;
+                }
+                $dados['funcionario_id'] = $funcionario_id;
+                $useDB = new RetiradaMedicamento();
+                $res = $useDB->insert($dados);
+                if($res!="-1")
+                {
+                    print("Sucesso.");
+                }
+                else print("Fracassado, nunca vai ser nada na vida. ");
+                View::includeFooter();
+            }
+            else if($acao=="retirada")
+            {
+                View::includeHeader();
+                $mlote_codigo = $_REQUEST['mlote_codigo'];
+                $medicamento_id = $_REQUEST['medicamento_id'];
+                //$funcionario_id = $_SESSION['usuario_logado']['funcionario_id'];
+                //print("<br>$mlote_codigo <br> $medicamento_id");
+                
+                
+                ?>
+                    <form action="?pag=medicamento&acao=retiradaconfirma&medicamento_id=<?php print($medicamento_id."&mlote_codigo=".$mlote_codigo);?>" method="POST">
+                        <div class="ui-widget">
+                        <br><label for="rmedicamento_pacienteNome">*Paciente</label>                 
+                        <input type="text" id="paciente_nome" name="rmedicamento_pacienteNome">
+                        </div>
+                        
+                        <br><label for="rmedicamento_pacienteCPF">rmedicamento_pacienteCPF</label>
+                        <input type="text" id="paciente_cpf" name="rmedicamento_pacienteCPF">
+                        
+                        <br><label for="rmedicamento_pacienteContato">rmedicamento_pacienteContato</label>
+                        <input type="text" id="paciente_contato" name="rmedicamento_pacienteContato">
+                        <br>
+                        
+                        <br><label for="rmedicamento_medicoCRM">*rmedicamento_medicoCRM</label>
+                        <input type="text" name="rmedicamento_medicoCRM">
+                        
+
+                        <br><label for="rmedicamento_identificadorReceita">rmedicamento_identificadorReceita</label>
+                        <input type="text" name="rmedicamento_identificadorReceita">
+                        
+                        <br><br><input type="submit" value="Confirmar" name="submit">
+                        
+                        
+                    </form>
+                    
                 <?php
                 View::includeFooter();
             }

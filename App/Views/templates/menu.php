@@ -3,10 +3,12 @@ if(isset($_SESSION['usuario_logado'])):
             $perm_administrador = 0;
             $perm_atendente = 0;
             $perm_medico = 0;
+            $perm_paciente = 0;
             
             if(isset($_SESSION['usuario_logado']['administrador_ativo'])) $perm_administrador = 1;
             if(isset($_SESSION['usuario_logado']['atendente_ativo'])) $perm_atendente = 1;
             if(isset($_SESSION['usuario_logado']['medico_ativo'])) $perm_medico = 1;
+            if(isset($_SESSION['usuario_logado']['paciente_id'])) $perm_paciente = 1;
 
 ?>
 <!-- Main Header -->
@@ -30,14 +32,56 @@ if(isset($_SESSION['usuario_logado'])):
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
         
+          
+            <!-- Menu Toggle Button -->
+            
+              <!-- The user image in the navbar-->
+              <!-- <img src="layout/dist/img/avatar.jpg" class="user-image" alt="User Image"> -->
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <?php
+              
+              if(isset($_SESSION['usuario_logado']['funcionario_id']))
+              {
+                  if(isset($_SESSION['usuario_paciente']))
+                  {
+                      ?>
+                      <li class="dropdown user user-menu">
+                      <a href="?pag=login&acao=trocaracesso">
+                        <!-- The user image in the navbar-->
+                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        <span class="hidden-xs">Acessar como Paciente</span>
+                      </a>
+                      </li>
+                    <?php
+                  }
+              }
+              else if(isset($_SESSION['usuario_logado']['paciente_id']))
+              {
+                  if(isset($_SESSION['usuario_funcionario']))
+                  {
+                      ?>
+                      <li class="dropdown user user-menu">
+                      <a href="?pag=login&acao=trocaracesso">
+                        <!-- The user image in the navbar-->
+                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        <span class="hidden-xs">Acessar como Funcionario</span>
+                      </a>
+                      </li>
+                    <?php
+                  }
+              }
+              
+                ?>
+          
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
+            
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               <img src="layout/dist/img/avatar.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs"><?php print($_SESSION['usuario_logado']['funcionario_nome']); ?></span>
+              <span class="hidden-xs"><?php if(isset($_SESSION['usuario_logado']['funcionario_id'])) print($_SESSION['usuario_logado']['funcionario_nome']); else if(isset($_SESSION['usuario_logado']['paciente_id'])) print($_SESSION['usuario_logado']['paciente_nome']); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -45,7 +89,11 @@ if(isset($_SESSION['usuario_logado'])):
                 <img src="layout/dist/img/avatar.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php print($_SESSION['usuario_logado']['funcionario_nome']); ?>
+                  <?php
+                  if(isset($_SESSION['usuario_logado']['funcionario_id'])) print($_SESSION['usuario_logado']['funcionario_nome']);
+                  else if(isset($_SESSION['usuario_logado']['paciente_id'])) print($_SESSION['usuario_logado']['paciente_nome']);
+                  
+                  ?>
                   <small>
                    
                   </small>
@@ -54,8 +102,23 @@ if(isset($_SESSION['usuario_logado'])):
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
+                    <?php
+                    if(isset($_SESSION['usuario_logado']['funcionario_id']))
+                    {
+                    ?>
                   <a href="?pag=funcionario&acao=editar&id=<?php print($_SESSION['usuario_logado']['funcionario_id']) ?>" class="btn btn-default btn-flat">Perfil</a>
                   <a href='?pag=funcionario&acao=trocasenha&id=<?php print($_SESSION['usuario_logado']['funcionario_id'])?>' class='btn btn-flat btn-default'>Alterar Senha</a>
+                  <?php
+                    }
+                    else if(isset($_SESSION['usuario_logado']['paciente_id']))
+                    {
+                  ?>
+                    <a href="?pag=paciente&acao=editar&id=<?php print($_SESSION['usuario_logado']['paciente_id']) ?>" class="btn btn-default btn-flat">Perfil</a>
+                    <a href='?pag=paciente&acao=trocasenha&id=<?php print($_SESSION['usuario_logado']['paciente_id'])?>' class='btn btn-flat btn-default'>Alterar Senha</a>
+                  
+                  <?php
+                    }
+                  ?>
                 </div>
                 <div class="pull-right">
                   <a href="?pag=login&acao=logout" class="btn btn-default btn-flat">Sair</a>
@@ -90,8 +153,13 @@ if(isset($_SESSION['usuario_logado'])):
                 print('<li><a href="?pag=medicamento&acao=listar"><i class="fa fa-medkit"></i> <span>Medicamento</span></a></li>');
                 print('<li><a href="?pag=consulta&acao=listarpacientes"><i class="fa fa-list-alt"></i> <span>Consulta</span></a></li>');
             }
-            print('<li><a href="?pag=vacinacao&acao=listarpacientes"><i class="fa fa-table"></i> <span>Vacinação</span></a></li>');
-            if($perm_administrador>0):
+            if($perm_paciente!=1)print('<li><a href="?pag=vacinacao&acao=listarpacientes"><i class="fa fa-table"></i> <span>Vacinação</span></a></li>');
+            if($perm_paciente==1)
+            {
+                print('<li><a href="?pag=vacinacao&acao=visualizarpaciente&paciente_id='.$_SESSION['usuario_logado']['paciente_id'].'"><i class="fa fa-eyedropper"></i> <span>Vacinação</span></a></li>');
+                print('<li><a href="?pag=consulta&acao=visualizarpaciente&paciente_id='.$_SESSION['usuario_logado']['paciente_id'].'"><i class="fa fa-list-alt"></i> <span>Consultas</span></a></li>');
+            }
+            if($perm_atendente>0 || $perm_medico>0 || $perm_administrador>0):
           ?>  
           <li class="treeview">
             <a href="#"><i class="fa fa-file-pdf-o"></i> <span>Relátorios</span>
